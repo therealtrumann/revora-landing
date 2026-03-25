@@ -49,19 +49,33 @@
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #FFFFFF;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             width: fit-content;
         }
 
         .logo-icon {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-eyebrow {
+            font-size: 14px;
+            font-weight: 700;
             color: #C0392B;
-            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
         }
 
         .hero-headline {
@@ -293,8 +307,21 @@
             }
 
             .logo {
-                margin-bottom: 32px;
-                font-size: 20px;
+                margin-bottom: 24px;
+            }
+
+            .logo-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+
+            .hero-eyebrow {
+                font-size: 12px;
+                margin-bottom: 16px;
             }
 
             .hero-headline {
@@ -408,8 +435,21 @@
             }
 
             .logo {
-                margin-bottom: 28px;
-                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .hero-eyebrow {
+                font-size: 11px;
+                margin-bottom: 14px;
             }
 
             .hero-headline {
@@ -522,6 +562,24 @@
                 gap: 28px;
             }
 
+            .logo {
+                margin-bottom: 18px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .hero-eyebrow {
+                font-size: 10px;
+                margin-bottom: 12px;
+            }
+
             .hero-headline {
                 font-size: 24px;
                 margin-bottom: 16px;
@@ -566,13 +624,53 @@
     <section class="hero">
         <div class="hero-left">
             <div class="logo">
-                <span class="logo-icon">◈</span>
-                <span>REVORA</span>
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Raios do logo -->
+                    <g fill="#FFFFFF">
+                        <!-- Raio 1 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(0 50 50)"/>
+                        <!-- Raio 2 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(22.5 50 50)"/>
+                        <!-- Raio 3 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(45 50 50)"/>
+                        <!-- Raio 4 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(67.5 50 50)"/>
+                        <!-- Raio 5 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(90 50 50)"/>
+                        <!-- Raio 6 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(112.5 50 50)"/>
+                        <!-- Raio 7 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(135 50 50)"/>
+                        <!-- Raio 8 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(157.5 50 50)"/>
+                        <!-- Raio 9 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(180 50 50)"/>
+                        <!-- Raio 10 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(202.5 50 50)"/>
+                        <!-- Raio 11 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(225 50 50)"/>
+                        <!-- Raio 12 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(247.5 50 50)"/>
+                        <!-- Raio 13 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(270 50 50)"/>
+                        <!-- Raio 14 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(292.5 50 50)"/>
+                        <!-- Raio 15 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(315 50 50)"/>
+                        <!-- Raio 16 -->
+                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(337.5 50 50)"/>
+                    </g>
+                </svg>
+                <span class="logo-text">REVORA</span>
+            </div>
+
+            <div class="hero-eyebrow">
+                SEG às 12H - Como aumentar seu faturamento com IA
             </div>
 
             <h1 class="hero-headline">
-                Como usar <span class="highlight">IA no seu atendimento</span>
-                para vender mais <span class="highlight">respondendo primeiro</span>
+                De <span class="highlight">responder depois</span>
+                para <span class="highlight">vender primeiro</span>
             </h1>
 
             <p class="hero-subheadline">

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revora - IA para Atendimento e Vendas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background-color: #0D0D0D;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        /* BARRA DE TOPO */
+        .top-bar {
+            background-color: #C0392B;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* SEÇÃO HERO */
+        .hero {
+            background-color: #0D0D0D;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+        }
+
+        .logo-icon {
+            color: #C0392B;
+            font-size: 24px;
+        }
+
+        .hero-headline {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .hero-headline .highlight {
+            color: #E74C3C;
+        }
+
+        .hero-subheadline {
+            font-size: 18px;
+            color: #AAAAAA;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .cta-button {
+            background-color: #25D366;
+            color: #000000;
+            font-weight: 800;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            width: fit-content;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .cta-micro {
+            font-size: 12px;
+            color: #888888;
+            margin-top: 12px;
+            text-align: center;
+            max-width: 280px;
+        }
+
+        /* CARD DE INFORMAÇÕES */
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-card {
+            background-color: #1A1A1A;
+            border: 1px solid #C0392B;
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            max-width: 280px;
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #25D366;
+        }
+
+        .info-card-time {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .info-card-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #C0392B;
+        }
+
+        /* TICKER */
+        .ticker-section {
+            background-color: #C0392B;
+            padding: 16px 0;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: inline-block;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* SEÇÃO 2 - APRENDER NA PRÁTICA */
+        .learning-section {
+            background-color: #0D0D0D;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #C0392B;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background-color: #161616;
+            border: 1px solid #2A2A2A;
+            border-bottom: 3px solid #C0392B;
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #C0392B;
+            box-shadow: 0 8px 24px rgba(192, 57, 43, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #C0392B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: -40px auto 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #FFFFFF;
+            line-height: 1.8;
+        }
+
+        .card-text .highlight {
+            color: #E74C3C;
+            font-weight: 700;
+        }
+
+        /* CTA CENTERED NA SEÇÃO 2 */
+        .cta-section {
+            margin-top: 48px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .hero-headline {
+                font-size: 32px;
+            }
+
+            .hero-right {
+                order: -1;
+                margin-bottom: 20px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .learning-section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .top-bar {
+                font-size: 11px;
+                padding: 10px 15px;
+            }
+
+            .hero-subheadline {
+                font-size: 16px;
+                max-width: 100%;
+            }
+
+            .info-card {
+                max-width: 100%;
+                padding: 32px 24px;
+            }
+
+            .ticker-content {
+                font-size: 12px;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline {
+                font-size: 26px;
+            }
+
+            .cta-button {
+                font-size: 15px;
+                padding: 16px 32px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .card-text {
+                font-size: 15px;
+            }
+        }
+
+        /* SMOOTH SCROLL */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- BARRA DE TOPO -->
+    <div class="top-bar">
+        EXCLUSIVO PARA DONOS DE EMPRESA E GESTORES COMERCIAIS
+    </div>
+
+    <!-- SEÇÃO HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span>REVORA</span>
+            </div>
+
+            <h1 class="hero-headline">
+                Como usar <span class="highlight">IA no seu atendimento</span>
+                para vender mais <span class="highlight">respondendo primeiro</span>
+            </h1>
+
+            <p class="hero-subheadline">
+                Mesmo que você já tenha tentado chatbot e não funcionou — você vai ver como empresas estão eliminando a demora no atendimento, qualificando leads automaticamente e dobrando a conversão sem contratar mais ninguém.
+            </p>
+
+            <div>
+                <a href="https://chat.whatsapp.com/SEU_LINK_WHATSAPP" class="cta-button" target="_blank" rel="noopener">
+                    GARANTIR MINHA VAGA GRATUITA →
+                </a>
+                <p class="cta-micro">
+                    O link leva para um grupo silencioso no WhatsApp.<br>
+                    Na quinta-feira eu mando lá o link da sala ao vivo.
+                </p>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="info-card">
+                <div class="info-card-icon">📲</div>
+                <div class="info-card-time">QUINTA-FEIRA | 20H00</div>
+                <div class="info-card-label">AO VIVO NO ZOOM</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-section">
+        <div class="ticker-content">
+            <span class="ticker-item">DONOS DE EMPRESA</span>
+            <span class="ticker-item">GESTORES COMERCIAIS</span>
+            <span class="ticker-item">REVORA</span>
+            <span class="ticker-item">MÉTODO ARIA</span>
+            <span class="ticker-item">IA PARA VENDAS</span>
+            <span class="ticker-item">ATENDIMENTO INTELIGENTE</span>
+            <span class="ticker-item">DONOS DE EMPRESA</span>
+            <span class="ticker-item">GESTORES COMERCIAIS</span>
+            <span class="ticker-item">REVORA</span>
+            <span class="ticker-item">MÉTODO ARIA</span>
+            <span class="ticker-item">IA PARA VENDAS</span>
+            <span class="ticker-item">ATENDIMENTO INTELIGENTE</span>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 2 - APRENDER NA PRÁTICA -->
+    <section class="learning-section">
+        <h2 class="section-title">VOCÊ VAI APRENDER NA PRÁTICA</h2>
+
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <p class="card-text">
+                    Como parar de perder vendas para concorrentes mais rápidos — e fazer seu negócio ser <span class="highlight">o primeiro a responder</span> qualquer lead, 24 horas por dia, 7 dias por semana
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <p class="card-text">
+                    Os 4 erros que estão travando sua conversão agora mesmo — e como o <span class="highlight">Método ARIA</span> elimina cada um deles sem depender de equipe humana no atendimento
+                </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">👑</div>
+                <p class="card-text">
+                    Como empresas estão usando <span class="highlight">IA sob medida</span> para qualificar leads, agendar reuniões e aumentar o faturamento — e como você pode implementar isso em menos de 30 dias
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="https://chat.whatsapp.com/SEU_LINK_WHATSAPP" class="cta-button" target="_blank" rel="noopener">
+                GARANTIR MINHA VAGA GRATUITA →
+            </a>
+        </div>
+    </section>
+</body>
+</html>

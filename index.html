@@ -140,31 +140,65 @@
         }
 
         .info-card {
-            background-color: #1A1A1A;
-            border: 1px solid #C0392B;
-            border-radius: 16px;
-            padding: 40px 32px;
+            background: linear-gradient(135deg, #1A1A1A 0%, #161616 100%);
+            border: 2px solid #C0392B;
+            border-radius: 20px;
+            padding: 0;
             text-align: center;
-            max-width: 280px;
+            max-width: 320px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(192, 57, 43, 0.2), 0 0 1px rgba(192, 57, 43, 0.5) inset;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C0392B, #E74C3C, #C0392B);
+        }
+
+        .info-card:hover {
+            border-color: #E74C3C;
+            box-shadow: 0 24px 80px rgba(192, 57, 43, 0.3), 0 0 1px rgba(192, 57, 43, 0.8) inset;
+            transform: translateY(-8px);
         }
 
         .info-card-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #25D366;
+            font-size: 64px;
+            margin: 32px 0 20px 0;
+            color: #FFFFFF;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
         }
 
         .info-card-time {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 800;
             color: #FFFFFF;
-            margin-bottom: 8px;
+            margin: 0;
+            padding: 0 32px;
+            letter-spacing: 0.5px;
         }
 
         .info-card-label {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
-            color: #C0392B;
+            color: #E74C3C;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 12px 0 0 0;
+            padding: 0 32px 32px 32px;
+            display: block;
         }
 
         /* TICKER */
@@ -356,23 +390,24 @@
 
             .info-card {
                 max-width: 100%;
-                padding: 36px 28px;
+                padding: 0;
                 width: 100%;
                 border-radius: 16px;
             }
 
             .info-card-icon {
-                font-size: 44px;
-                margin-bottom: 18px;
+                font-size: 52px;
+                margin: 28px 0 16px 0;
             }
 
             .info-card-time {
-                font-size: 19px;
-                margin-bottom: 10px;
+                font-size: 20px;
+                margin: 0;
             }
 
             .info-card-label {
-                font-size: 17px;
+                font-size: 13px;
+                padding: 0 24px 28px 24px;
             }
 
             .cards-container {
@@ -482,24 +517,25 @@
             }
 
             .info-card {
-                padding: 28px 20px;
+                padding: 0;
                 border-radius: 14px;
                 max-width: 90%;
             }
 
             .info-card-icon {
-                font-size: 40px;
-                margin-bottom: 16px;
+                font-size: 48px;
+                margin: 24px 0 14px 0;
             }
 
             .info-card-time {
-                font-size: 17px;
-                margin-bottom: 8px;
+                font-size: 18px;
+                margin: 0;
                 font-weight: 700;
             }
 
             .info-card-label {
-                font-size: 15px;
+                font-size: 12px;
+                padding: 0 20px 24px 20px;
             }
 
             .cards-container {
@@ -704,9 +740,9 @@
 
         <div class="hero-right">
             <div class="info-card">
-                <div class="info-card-icon">📲</div>
-                <div class="info-card-time">QUINTA-FEIRA | 20H00</div>
-                <div class="info-card-label">AO VIVO NO ZOOM</div>
+                <div class="info-card-icon">📹</div>
+                <div class="info-card-time">SEGUNDA-FEIRA | 12H</div>
+                <div class="info-card-label">AO VIVO NO GOOGLE MEET</div>
             </div>
         </div>
     </section>

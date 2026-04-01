@@ -1,805 +1,1102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revora | A revolução silenciosa de IA</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background-color: #0D0D0D;
-            color: #FFFFFF;
-            line-height: 1.6;
-        }
-
-        /* BARRA DE TOPO */
-        .top-bar {
-            background-color: #C0392B;
-            color: #FFFFFF;
-            padding: 12px 20px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* SEÇÃO HERO */
-        .hero {
-            background-color: #0D0D0D;
-            padding: 60px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo {
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: fit-content;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            flex-shrink: 0;
-        }
-
-        .logo-text {
-            font-size: 26px;
-            font-weight: 800;
-            color: #FFFFFF;
-            letter-spacing: -0.5px;
-        }
-
-        .hero-eyebrow {
-            font-size: 14px;
-            font-weight: 700;
-            color: #C0392B;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .hero-headline {
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: #FFFFFF;
-        }
-
-        .hero-headline .highlight {
-            color: #E74C3C;
-        }
-
-        .hero-subheadline {
-            font-size: 18px;
-            color: #AAAAAA;
-            line-height: 1.8;
-            margin-bottom: 32px;
-            max-width: 520px;
-        }
-
-        .cta-button {
-            background-color: #25D366;
-            color: #000000;
-            font-weight: 800;
-            padding: 18px 36px;
-            border-radius: 50px;
-            font-size: 17px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            width: fit-content;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button:hover {
-            filter: brightness(1.1);
-            transform: scale(1.02);
-        }
-
-        .cta-button:active {
-            transform: scale(0.98);
-        }
-
-        .cta-micro {
-            font-size: 12px;
-            color: #888888;
-            margin-top: 12px;
-            text-align: center;
-            max-width: 280px;
-        }
-
-        /* CARD DE INFORMAÇÕES */
-        .hero-right {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, #1A1A1A 0%, #161616 100%);
-            border: 2px solid #C0392B;
-            border-radius: 20px;
-            padding: 0;
-            text-align: center;
-            max-width: 320px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(192, 57, 43, 0.2), 0 0 1px rgba(192, 57, 43, 0.5) inset;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #C0392B, #E74C3C, #C0392B);
-        }
-
-        .info-card:hover {
-            border-color: #E74C3C;
-            box-shadow: 0 24px 80px rgba(192, 57, 43, 0.3), 0 0 1px rgba(192, 57, 43, 0.8) inset;
-            transform: translateY(-8px);
-        }
-
-        .info-card-icon {
-            font-size: 64px;
-            margin: 32px 0 20px 0;
-            color: #FFFFFF;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .info-card-time {
-            font-size: 22px;
-            font-weight: 800;
-            color: #FFFFFF;
-            margin: 0;
-            padding: 0 32px;
-            letter-spacing: 0.5px;
-        }
-
-        .info-card-label {
-            font-size: 14px;
-            font-weight: 700;
-            color: #E74C3C;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 12px 0 0 0;
-            padding: 0 32px 32px 32px;
-            display: block;
-        }
-
-        /* TICKER */
-        .ticker-section {
-            background-color: #C0392B;
-            padding: 16px 0;
-            overflow: hidden;
-            margin-top: 40px;
-        }
-
-        .ticker-content {
-            display: flex;
-            gap: 40px;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            white-space: nowrap;
-            animation: ticker 25s linear infinite;
-            letter-spacing: 0.5px;
-        }
-
-        .ticker-content:hover {
-            animation-play-state: paused;
-        }
-
-        .ticker-item {
-            display: inline-block;
-        }
-
-        @keyframes ticker {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* SEÇÃO 2 - APRENDER NA PRÁTICA */
-        .learning-section {
-            background-color: #0D0D0D;
-            padding: 80px 40px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 40px;
-            font-weight: 800;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: #C0392B;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 60px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .card {
-            background-color: #161616;
-            border: 1px solid #2A2A2A;
-            border-bottom: 3px solid #C0392B;
-            border-radius: 12px;
-            padding: 32px 24px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: #C0392B;
-            box-shadow: 0 8px 24px rgba(192, 57, 43, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .card-icon {
-            width: 64px;
-            height: 64px;
-            background-color: #C0392B;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin: -40px auto 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-text {
-            font-size: 16px;
-            color: #FFFFFF;
-            line-height: 1.8;
-        }
-
-        .card-text .highlight {
-            color: #E74C3C;
-            font-weight: 700;
-        }
-
-        /* CTA CENTERED NA SEÇÃO 2 */
-        .cta-section {
-            margin-top: 48px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* RESPONSIVIDADE TABLET */
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                padding: 50px 24px;
-            }
-
-            .hero-left {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .logo {
-                margin-bottom: 24px;
-            }
-
-            .logo-icon {
-                width: 44px;
-                height: 44px;
-            }
-
-            .logo-text {
-                font-size: 22px;
-            }
-
-            .hero-eyebrow {
-                font-size: 12px;
-                margin-bottom: 16px;
-            }
-
-            .hero-headline {
-                font-size: 36px;
-                line-height: 1.3;
-                margin-bottom: 24px;
-            }
-
-            .hero-subheadline {
-                font-size: 17px;
-                max-width: 100%;
-                margin-bottom: 28px;
-                line-height: 1.7;
-            }
-
-            .cta-button {
-                font-size: 16px;
-                padding: 16px 32px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .cta-micro {
-                font-size: 13px;
-                margin-top: 14px;
-            }
-
-            .hero-right {
-                order: -1;
-                margin-bottom: 0;
-            }
-
-            .info-card {
-                max-width: 100%;
-                padding: 0;
-                width: 100%;
-                border-radius: 16px;
-            }
-
-            .info-card-icon {
-                font-size: 52px;
-                margin: 28px 0 16px 0;
-            }
-
-            .info-card-time {
-                font-size: 20px;
-                margin: 0;
-            }
-
-            .info-card-label {
-                font-size: 13px;
-                padding: 0 24px 28px 24px;
-            }
-
-            .cards-container {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                margin-top: 48px;
-            }
-
-            .card {
-                padding: 28px 20px;
-                border-radius: 14px;
-            }
-
-            .card-icon {
-                width: 56px;
-                height: 56px;
-                font-size: 28px;
-                margin: -32px auto 20px;
-            }
-
-            .card-text {
-                font-size: 16px;
-                line-height: 1.7;
-            }
-
-            .learning-section {
-                padding: 60px 24px;
-            }
-
-            .section-title {
-                font-size: 32px;
-                margin-bottom: 18px;
-            }
-
-            .section-title::after {
-                bottom: -14px;
-                width: 50px;
-            }
-
-            .top-bar {
-                font-size: 11px;
-                padding: 11px 16px;
-            }
-
-            .ticker-content {
-                font-size: 12px;
-                gap: 28px;
-            }
-
-            .cta-section {
-                margin-top: 40px;
-            }
-        }
-
-        /* RESPONSIVIDADE MOBILE */
-        @media (max-width: 480px) {
-            .hero {
-                padding: 40px 16px;
-                gap: 36px;
-            }
-
-            .logo {
-                margin-bottom: 20px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .logo-text {
-                font-size: 20px;
-            }
-
-            .hero-eyebrow {
-                font-size: 11px;
-                margin-bottom: 14px;
-            }
-
-            .hero-headline {
-                font-size: 28px;
-                line-height: 1.2;
-                margin-bottom: 18px;
-            }
-
-            .hero-subheadline {
-                font-size: 15px;
-                margin-bottom: 24px;
-                line-height: 1.7;
-            }
-
-            .cta-button {
-                font-size: 14px;
-                padding: 14px 28px;
-                width: 100%;
-                border-radius: 40px;
-            }
-
-            .cta-button:hover {
-                transform: scale(1.01);
-            }
-
-            .cta-micro {
-                font-size: 12px;
-                margin-top: 12px;
-                line-height: 1.5;
-            }
-
-            .info-card {
-                padding: 0;
-                border-radius: 14px;
-                max-width: 90%;
-            }
-
-            .info-card-icon {
-                font-size: 48px;
-                margin: 24px 0 14px 0;
-            }
-
-            .info-card-time {
-                font-size: 18px;
-                margin: 0;
-                font-weight: 700;
-            }
-
-            .info-card-label {
-                font-size: 12px;
-                padding: 0 20px 24px 20px;
-            }
-
-            .cards-container {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                margin-top: 40px;
-            }
-
-            .card {
-                padding: 24px 18px;
-                border-radius: 12px;
-            }
-
-            .card-icon {
-                width: 52px;
-                height: 52px;
-                font-size: 26px;
-                margin: -28px auto 16px;
-            }
-
-            .card-text {
-                font-size: 15px;
-                line-height: 1.65;
-            }
-
-            .learning-section {
-                padding: 48px 16px;
-            }
-
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 16px;
-            }
-
-            .section-title::after {
-                bottom: -12px;
-                width: 45px;
-            }
-
-            .top-bar {
-                font-size: 10px;
-                padding: 10px 12px;
-                letter-spacing: 0.3px;
-            }
-
-            .ticker-content {
-                font-size: 11px;
-                gap: 24px;
-            }
-
-            .cta-section {
-                margin-top: 32px;
-            }
-        }
-
-        /* EXTRA SMALL DEVICES */
-        @media (max-width: 360px) {
-            .hero {
-                padding: 32px 12px;
-                gap: 28px;
-            }
-
-            .logo {
-                margin-bottom: 18px;
-            }
-
-            .logo-icon {
-                width: 36px;
-                height: 36px;
-            }
-
-            .logo-text {
-                font-size: 18px;
-            }
-
-            .hero-eyebrow {
-                font-size: 10px;
-                margin-bottom: 12px;
-            }
-
-            .hero-headline {
-                font-size: 24px;
-                margin-bottom: 16px;
-            }
-
-            .hero-subheadline {
-                font-size: 14px;
-                margin-bottom: 20px;
-            }
-
-            .info-card {
-                padding: 24px 16px;
-            }
-
-            .cta-button {
-                font-size: 13px;
-                padding: 12px 24px;
-            }
-
-            .card-text {
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-        }
-
-        /* SMOOTH SCROLL */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1478245654017971');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1478245654017971&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revora | Mais agendamentos. Mais receita. Menos desperdício.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --obsidian:#0f0e0c;
+  --charcoal:#1a1915;
+  --charcoal2:#221f19;
+  --gold:#c9a84c;
+  --gold-l:#e8d5a0;
+  --gold-d:#8a6e2f;
+  --gold-dim:rgba(201,168,76,0.12);
+  --gold-glow:rgba(201,168,76,0.25);
+  --cream:#f5f0e8;
+  --cream2:#ede8df;
+  --sand:#c5bca8;
+  --white:#fafaf8;
+  --text-main:#1a1815;
+  --text-muted:#6b6560;
+  --border-dark:rgba(201,168,76,0.15);
+  --border-light:rgba(201,168,76,0.25);
+  --r:4px;
+  --r2:2px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--obsidian);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* GRAIN OVERLAY */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--obsidian)}
+::-webkit-scrollbar-thumb{background:var(--gold-d)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(15,14,12,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-dark);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;letter-spacing:0.08em;
+  color:var(--white);text-transform:uppercase;
+}
+.logo-dot{color:var(--gold)}
+.nav-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:600;
+  padding:10px 22px;
+  text-decoration:none;cursor:pointer;background:none;
+  letter-spacing:0.12em;text-transform:uppercase;
+  transition:all .25s;
+}
+.nav-btn:hover{background:var(--gold);color:var(--obsidian)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:140px 6% 100px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 70% at 75% 40%,rgba(201,168,76,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 80%,rgba(201,168,76,0.04) 0%,transparent 50%);
+}
+.hero-line-v{
+  position:absolute;right:18%;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent 0%,var(--gold) 25%,var(--gold) 75%,transparent 100%);
+  opacity:.08;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:32px;
+  animation:fadeUp .7s ease both;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6.5vw,96px);
+  font-weight:600;
+  line-height:.98;
+  letter-spacing:-0.01em;
+  max-width:820px;
+  animation:fadeUp .7s .12s ease both;
+}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  margin-top:28px;
+  font-size:clamp(15px,1.6vw,18px);font-weight:300;
+  color:rgba(250,250,248,.55);
+  max-width:500px;line-height:1.75;
+  animation:fadeUp .7s .24s ease both;
+}
+.hero-actions{
+  margin-top:48px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  animation:fadeUp .7s .36s ease both;
+}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);
+  color:var(--obsidian);
+  font-size:12px;font-weight:600;
+  padding:16px 36px;
+  text-decoration:none;border:none;cursor:pointer;
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:all .25s;
+}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 16px 48px var(--gold-glow)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(201,168,76,.3);
+  color:rgba(250,250,248,.5);
+  font-size:11px;font-weight:500;
+  padding:16px 28px;
+  text-decoration:none;cursor:pointer;background:none;
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:all .25s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-note{font-size:11px;color:rgba(250,250,248,.25);letter-spacing:.06em}
+.hero-metrics{
+  display:flex;gap:0;
+  margin-top:80px;
+  border:1px solid var(--border-dark);
+  max-width:640px;
+  animation:fadeUp .7s .48s ease both;
+}
+.hm-item{
+  flex:1;padding:24px 28px;
+  border-right:1px solid var(--border-dark);
+}
+.hm-item:last-child{border-right:none}
+.hm-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:700;
+  color:var(--gold);line-height:1;letter-spacing:-.02em;
+}
+.hm-label{
+  font-size:11px;font-weight:400;
+  color:rgba(250,250,248,.35);
+  margin-top:6px;letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* SECTIONS */
+section{padding:108px 6%;position:relative;z-index:1}
+.s-cream{background:var(--cream);color:var(--text-main)}
+.s-charcoal{background:var(--charcoal)}
+.s-obsidian{background:var(--obsidian)}
+.s-charcoal2{background:var(--charcoal2)}
+
+.eyebrow{
+  font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.eyebrow-dark{color:var(--gold-d)}
+.eyebrow-dark::before{background:var(--gold-d)}
+
+.s-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4.5vw,62px);
+  font-weight:600;line-height:1.05;
+  letter-spacing:-.01em;margin-bottom:16px;
+}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-title-dark em{color:var(--gold-d)}
+.s-sub{
+  font-size:16px;font-weight:300;
+  color:rgba(250,250,248,.5);
+  max-width:520px;line-height:1.7;
+}
+.s-sub-dark{color:var(--text-muted)}
+
+/* PROBLEM */
+.prob-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border-dark);
+  margin-top:64px;
+}
+.prob-item{
+  padding:36px 28px;
+  border-right:1px solid var(--border-dark);
+  border-bottom:1px solid var(--border-dark);
+  transition:background .3s;
+  position:relative;overflow:hidden;
+}
+.prob-item:hover{background:rgba(201,168,76,.04)}
+.prob-item:nth-child(3n){border-right:none}
+.prob-item:nth-last-child(-n+3){border-bottom:none}
+.prob-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;font-weight:700;
+  color:rgba(201,168,76,.06);
+  position:absolute;top:8px;right:16px;line-height:1;
+}
+.prob-icon{
+  width:36px;height:36px;
+  border:1px solid var(--border-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;margin-bottom:16px;
+}
+.prob-title{font-size:15px;font-weight:500;margin-bottom:8px;letter-spacing:-.01em}
+.prob-desc{font-size:13px;font-weight:300;color:rgba(250,250,248,.45);line-height:1.65}
+
+/* REFRAME */
+.reframe-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border-dark);
+  border:1px solid var(--border-dark);
+  margin-top:64px;
+}
+.rf-item{
+  padding:40px 36px;
+  background:var(--charcoal);
+  display:flex;gap:20px;align-items:flex-start;
+  transition:background .3s;
+}
+.rf-item:hover{background:#1f1c16}
+.rf-icon{
+  width:48px;height:48px;flex-shrink:0;
+  border:1px solid var(--border-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.rf-title{font-size:15px;font-weight:500;margin-bottom:8px;letter-spacing:-.01em}
+.rf-desc{font-size:13px;font-weight:300;color:rgba(250,250,248,.45);line-height:1.65}
+
+/* COMPARE */
+.compare-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;margin-top:64px;max-width:800px;
+}
+.cmp-card{padding:36px 32px;border:1px solid}
+.cmp-not{border-color:rgba(255,100,80,.2);background:rgba(255,100,80,.03)}
+.cmp-yes{border-color:var(--border-light);background:var(--gold-dim)}
+.cmp-head{
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.cmp-head .x{color:#ff6450}.cmp-head .ch{color:var(--gold)}
+.cmp-list{list-style:none}
+.cmp-list li{
+  font-size:14px;font-weight:300;
+  color:rgba(250,250,248,.55);
+  padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.4;
+}
+.cmp-list li:last-child{border-bottom:none}
+.cmp-list .mk-no{color:#ff6450;font-size:12px;margin-top:2px;flex-shrink:0}
+.cmp-list .mk-yes{color:var(--gold);font-size:12px;margin-top:2px;flex-shrink:0}
+
+/* AGENTS */
+.agents-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border-dark);
+  margin-top:64px;
+}
+.ag-item{
+  padding:32px 24px;
+  border-right:1px solid var(--border-dark);
+  transition:background .3s;
+}
+.ag-item:last-child{border-right:none}
+.ag-item:hover{background:rgba(201,168,76,.04)}
+.ag-icon{
+  width:44px;height:44px;
+  border:1px solid var(--border-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:20px;
+}
+.ag-title{font-size:14px;font-weight:500;margin-bottom:8px;line-height:1.25;letter-spacing:-.01em}
+.ag-desc{font-size:12px;font-weight:300;color:rgba(250,250,248,.4);line-height:1.65;margin-bottom:14px}
+.ag-pill{
+  display:inline-block;
+  border:1px solid var(--border-dark);
+  color:var(--gold);
+  font-size:10px;font-weight:600;
+  padding:4px 12px;letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* FORMULA */
+.formula-eq{
+  display:flex;align-items:center;justify-content:center;
+  gap:24px;flex-wrap:wrap;margin-top:64px;
+}
+.fe-item{text-align:center}
+.fe-box{
+  width:88px;height:88px;
+  border:1px solid var(--border-dark);
+  background:var(--charcoal2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;margin:0 auto 14px;
+}
+.fe-box.result{background:var(--gold-dim);border-color:var(--border-light)}
+.fe-label{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.fe-sub{font-size:11px;color:rgba(250,250,248,.35);margin-top:4px;letter-spacing:.04em;text-transform:uppercase}
+.fe-op{font-size:24px;color:rgba(201,168,76,.3)}
+.formula-box{
+  border:1px solid var(--border-dark);
+  padding:40px 48px;
+  max-width:840px;margin:40px auto 0;
+}
+.formula-box-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;
+  text-align:center;margin-bottom:28px;color:var(--gold);
+}
+.fi-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fi-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;border-bottom:1px solid rgba(201,168,76,.08);
+  font-size:13px;font-weight:300;color:rgba(250,250,248,.5);
+}
+.fi-row:nth-child(odd){padding-right:40px;border-right:1px solid rgba(201,168,76,.08)}
+.fi-row:nth-child(even){padding-left:40px}
+.fi-row:nth-last-child(-n+2){border-bottom:none}
+.fi-dot{color:var(--gold);flex-shrink:0;font-size:12px;margin-top:2px}
+
+/* PROCESS */
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:64px;position:relative;
+}
+.process-grid::before{
+  content:'';position:absolute;
+  top:34px;left:8%;right:8%;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold) 20%,var(--gold) 80%,transparent);
+  opacity:.2;
+}
+.ps-item{text-align:center;padding:0 24px}
+.ps-num{
+  width:68px;height:68px;
+  border:1px solid var(--border-light);
+  background:var(--charcoal2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;color:var(--gold);
+  margin:0 auto 22px;position:relative;z-index:1;
+}
+.ps-title{font-size:14px;font-weight:500;margin-bottom:8px;letter-spacing:-.01em}
+.ps-desc{font-size:12px;font-weight:300;color:rgba(250,250,248,.4);line-height:1.65}
+.ps-time{margin-top:10px;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+
+/* SIMULATOR — CREAM BG */
+.sim-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:rgba(201,168,76,.15);
+  border:1px solid rgba(201,168,76,.2);
+  margin-top:64px;
+}
+.sim-inputs{background:var(--cream);padding:40px 36px}
+.sim-results{background:var(--cream2);padding:40px 36px;display:flex;flex-direction:column;gap:16px}
+.sim-row{margin-bottom:24px}
+.sim-row:last-child{margin-bottom:0}
+.sim-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;font-weight:500;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;
+}
+.sim-label-val{font-size:15px;font-weight:600;color:var(--gold-d)}
+input[type=range]{
+  width:100%;height:3px;
+  background:rgba(139,110,47,.2);
+  border-radius:0;outline:none;border:none;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:16px;height:16px;
+  background:var(--gold-d);cursor:pointer;border:none;
+  border-radius:0;
+}
+.sim-ticket-label{font-size:12px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;margin-top:24px}
+.sim-ticket-input{
+  width:100%;background:#fff;
+  border:1px solid rgba(139,110,47,.25);
+  padding:12px 14px;
+  color:var(--text-main);font-size:15px;font-family:'DM Sans',sans-serif;font-weight:600;
+  outline:none;transition:border-color .2s;border-radius:0;
+}
+.sim-ticket-input:focus{border-color:var(--gold-d)}
+.sim-result-card{
+  background:#fff;border:1px solid rgba(139,110,47,.15);
+  padding:20px 22px;
+}
+.sim-result-card.hl{
+  background:var(--gold-d);border-color:var(--gold-d);
+}
+.sim-result-label{font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.sim-result-card.hl .sim-result-label{color:rgba(255,255,255,.65)}
+.sim-result-val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--text-main);letter-spacing:-.02em;line-height:1}
+.sim-result-card.hl .sim-result-val{color:#fff}
+.sim-result-sub{font-size:11px;color:var(--text-muted);margin-top:5px}
+.sim-result-card.hl .sim-result-sub{color:rgba(255,255,255,.6)}
+.sim-note{font-size:10px;color:var(--text-muted);margin-top:4px;line-height:1.5;font-style:italic}
+
+/* TESTIMONIAL */
+.testi-card{
+  border:1px solid var(--border-dark);
+  padding:52px 56px;
+  max-width:860px;margin:64px auto 0;
+  position:relative;
+}
+.testi-card::before{
+  content:'\201C';
+  font-family:'Cormorant Garamond',serif;
+  font-size:120px;line-height:1;
+  color:var(--gold);opacity:.2;
+  position:absolute;top:20px;left:40px;
+}
+.testi-stars{font-size:16px;letter-spacing:3px;color:var(--gold);margin-bottom:24px}
+.testi-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,2.8vw,30px);font-weight:400;font-style:italic;
+  line-height:1.45;color:rgba(250,250,248,.85);
+  margin-bottom:32px;
+}
+.testi-author{display:flex;align-items:center;gap:16px}
+.testi-avatar{
+  width:52px;height:52px;
+  border:1px solid var(--border-dark);
+  background:var(--charcoal2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--gold);flex-shrink:0;
+}
+.testi-name{font-size:14px;font-weight:500;letter-spacing:.02em}
+.testi-role{font-size:12px;color:rgba(250,250,248,.35);margin-top:3px;letter-spacing:.04em}
+
+/* FOUNDER */
+.founder-card{
+  border:1px solid var(--border-dark);
+  display:grid;grid-template-columns:260px 1fr;
+  gap:0;margin-top:64px;max-width:960px;
+}
+.founder-img{
+  background:var(--charcoal2);
+  border-right:1px solid var(--border-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-size:72px;min-height:320px;
+  color:rgba(201,168,76,.3);
+}
+.founder-content{padding:40px 44px}
+.founder-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--border-dark);
+  color:var(--gold);
+  font-size:10px;font-weight:600;
+  padding:6px 14px;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.founder-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:600;letter-spacing:-.01em;
+  margin-bottom:12px;
+}
+.founder-bio p{
+  font-size:14px;font-weight:300;
+  color:rgba(250,250,248,.5);line-height:1.75;
+  margin-bottom:14px;
+}
+.founder-bio p:last-child{margin-bottom:0}
+.founder-bio strong{color:rgba(250,250,248,.85);font-weight:500}
+
+/* FOR WHO */
+.forwho-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border-dark);
+  border:1px solid var(--border-dark);
+  margin-top:64px;
+}
+.fw-card{background:var(--charcoal);padding:40px 36px}
+.fw-head{
+  font-size:10px;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.fw-yes-c{color:#7bc67a}.fw-no-c{color:#ff6450}
+.fw-list{list-style:none}
+.fw-list li{
+  font-size:14px;font-weight:300;
+  color:rgba(250,250,248,.5);
+  padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.45;
+}
+.fw-list li:last-child{border-bottom:none}
+.fw-yes{color:#7bc67a;font-size:12px;margin-top:2px;flex-shrink:0}
+.fw-no{color:#ff6450;font-size:12px;margin-top:2px;flex-shrink:0}
+
+/* FAQ */
+.faq-wrap{max-width:720px;margin:64px auto 0}
+.faq-item{border-bottom:1px solid rgba(201,168,76,.08)}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:24px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  text-align:left;gap:20px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:400;color:rgba(250,250,248,.75);
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{
+  font-size:20px;color:var(--gold);flex-shrink:0;
+  transition:transform .3s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  font-size:14px;font-weight:300;
+  color:rgba(250,250,248,.4);line-height:1.75;
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease,padding .3s;
+}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:24px}
+
+/* CTA */
+.cta-sec{
+  padding:140px 6%;text-align:center;
+  position:relative;overflow:hidden;
+  border-top:1px solid var(--border-dark);
+}
+.cta-sec::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,168,76,.07) 0%,transparent 65%);
+}
+.cta-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,5.5vw,78px);
+  font-weight:600;line-height:1.02;letter-spacing:-.01em;
+  max-width:840px;margin:0 auto 20px;position:relative;
+}
+.cta-title em{font-style:italic;color:var(--gold)}
+.cta-sub{
+  font-size:16px;font-weight:300;
+  color:rgba(250,250,248,.4);
+  max-width:460px;margin:0 auto 52px;line-height:1.7;position:relative;
+}
+.cta-micro{margin-top:18px;font-size:11px;color:rgba(250,250,248,.2);letter-spacing:.06em;position:relative}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border-dark);
+  padding:32px 6%;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(250,250,248,.2);
+}
+.footer-logo span{color:rgba(201,168,76,.4)}
+.footer-copy{font-size:11px;color:rgba(250,250,248,.2);letter-spacing:.04em}
+
+/* ANIM */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.15s}.d3{transition-delay:.22s}.d4{transition-delay:.29s}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .prob-grid{grid-template-columns:1fr 1fr}
+  .prob-item:nth-child(2n){border-right:none}
+  .prob-item:nth-last-child(-n+3){border-bottom:1px solid var(--border-dark)}
+  .prob-item:last-child{border-bottom:none}
+  .agents-grid{grid-template-columns:1fr 1fr}
+  .ag-item:nth-child(2n){border-right:none}
+  .ag-item:nth-child(n+3){border-top:1px solid var(--border-dark)}
+  .process-grid{grid-template-columns:1fr 1fr;gap:48px}
+  .process-grid::before{display:none}
+  .sim-layout{grid-template-columns:1fr}
+  .founder-card{grid-template-columns:1fr}
+  .founder-img{min-height:200px;border-right:none;border-bottom:1px solid var(--border-dark)}
+  .compare-wrap{grid-template-columns:1fr;max-width:500px}
+  .reframe-layout{grid-template-columns:1fr}
+  .forwho-grid{grid-template-columns:1fr}
+  .fi-grid{grid-template-columns:1fr}
+  .fi-row:nth-child(odd){border-right:none;padding-right:0}
+  .fi-row:nth-child(even){padding-left:0}
+  .fi-row:nth-last-child(-n+2){border-bottom:1px solid rgba(201,168,76,.08)}
+  .fi-row:last-child{border-bottom:none}
+  footer{flex-direction:column;gap:12px;text-align:center}
+  .hero-metrics{flex-direction:column}
+  .hm-item{border-right:none;border-bottom:1px solid var(--border-dark)}
+  .hm-item:last-child{border-bottom:none}
+}
+@media(max-width:620px){
+  .prob-grid{grid-template-columns:1fr}
+  .prob-item:nth-child(2n){border-right:1px solid var(--border-dark)}
+  .prob-item{border-bottom:1px solid var(--border-dark)}
+  .agents-grid{grid-template-columns:1fr}
+  .ag-item{border-right:none;border-bottom:1px solid var(--border-dark)}
+  .process-grid{grid-template-columns:1fr}
+  .testi-card{padding:36px 28px}
+  .testi-card::before{font-size:80px;left:20px;top:10px}
+  .formula-box{padding:28px 24px}
+  .formula-eq{gap:12px}
+  .fe-box{width:68px;height:68px;font-size:26px}
+}
+</style>
 </head>
 <body>
-    <!-- BARRA DE TOPO -->
-    <div class="top-bar">
-        A REVOLUÇÃO SILENCIOSA JÁ COMEÇOU — E SUA EMPRESA PRECISA ESTAR NELA
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Revora<span class="logo-dot">.</span></div>
+  <a href="#cta" class="nav-btn">Quero aplicar →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero s-obsidian">
+  <div class="hero-bg"></div>
+  <div class="hero-line-v"></div>
+  <div class="hero-eyebrow">Sistema operacional para clínicas de estética</div>
+  <h1 class="hero-title">
+    Mais agendamentos.<br>
+    Mais receita.<br>
+    <em>Menos desperdício.</em>
+  </h1>
+  <p class="hero-sub">
+    A Revora implanta tecnologia com IA e direcionamento estratégico para aumentar sua captação de leads, acelerar a qualificação e lotar sua agenda — sem depender só de tráfego pago.
+  </p>
+  <div class="hero-actions">
+    <a href="#cta" class="btn-gold">Agendar diagnóstico gratuito →</a>
+    <a href="#simulador" class="btn-outline">Ver simulador de ganho</a>
+  </div>
+  <div class="hero-metrics">
+    <div class="hm-item">
+      <div class="hm-val">+40%</div>
+      <div class="hm-label">Aumento em agendamentos</div>
     </div>
-
-    <!-- SEÇÃO HERO -->
-    <section class="hero">
-        <div class="hero-left">
-            <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Raios do logo -->
-                    <g fill="#FFFFFF">
-                        <!-- Raio 1 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(0 50 50)"/>
-                        <!-- Raio 2 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(22.5 50 50)"/>
-                        <!-- Raio 3 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(45 50 50)"/>
-                        <!-- Raio 4 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(67.5 50 50)"/>
-                        <!-- Raio 5 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(90 50 50)"/>
-                        <!-- Raio 6 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(112.5 50 50)"/>
-                        <!-- Raio 7 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(135 50 50)"/>
-                        <!-- Raio 8 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(157.5 50 50)"/>
-                        <!-- Raio 9 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(180 50 50)"/>
-                        <!-- Raio 10 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(202.5 50 50)"/>
-                        <!-- Raio 11 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(225 50 50)"/>
-                        <!-- Raio 12 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(247.5 50 50)"/>
-                        <!-- Raio 13 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(270 50 50)"/>
-                        <!-- Raio 14 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(292.5 50 50)"/>
-                        <!-- Raio 15 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(315 50 50)"/>
-                        <!-- Raio 16 -->
-                        <rect x="42" y="5" width="16" height="22" rx="8" transform="rotate(337.5 50 50)"/>
-                    </g>
-                </svg>
-                <span class="logo-text">REVORA</span>
-            </div>
-
-            <h1 class="hero-headline">
-                A nova era das <span class="highlight">Empresas Autônomas</span><br>
-                que vendem mais <span class="highlight">respondendo primeiro</span>
-            </h1>
-
-            <p class="hero-subheadline">
-                BigTechs já operam com IA no atendimento, vendas e marketing. Agora isso chegou para as pequenas e médias empresas. Veja como implementar um agente de IA sob medida no seu negócio e aumentar sua receita diminuindo os custos.
-            </p>
-
-            <div>
-                <a href="https://chat.whatsapp.com/KvqFmsRvgHO5EaedFKE3Su?mode=gi_t" class="cta-button" target="_blank" rel="noopener">
-                    GARANTIR MINHA VAGA GRATUITA →
-                </a>
-                <p class="cta-micro">
-                    O link leva para um grupo silencioso no WhatsApp.
-                </p>
-            </div>
-        </div>
-
-        <div class="hero-right">
-            <div class="info-card">
-                <div class="info-card-icon">📹</div>
-                <div class="info-card-time">SEGUNDA-FEIRA | 12H</div>
-                <div class="info-card-label">AO VIVO NO GOOGLE MEET</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TICKER -->
-    <div class="ticker-section">
-        <div class="ticker-content">
-            <span class="ticker-item">REVOLUÇÃO SILENCIOSA</span>
-            <span class="ticker-item">EMPRESAS AUTÔNOMAS</span>
-            <span class="ticker-item">ERA DA IA</span>
-            <span class="ticker-item">REVORA</span>
-            <span class="ticker-item">MÉTODO ARIA</span>
-            <span class="ticker-item">EMPRESAS QUE RESPONDEM PRIMEIRO VENDEM MAIS</span>
-            <span class="ticker-item">REVOLUÇÃO SILENCIOSA</span>
-            <span class="ticker-item">EMPRESAS AUTÔNOMAS</span>
-            <span class="ticker-item">ERA DA IA</span>
-            <span class="ticker-item">REVORA</span>
-            <span class="ticker-item">MÉTODO ARIA</span>
-            <span class="ticker-item">EMPRESAS QUE RESPONDEM PRIMEIRO VENDEM MAIS</span>
-        </div>
+    <div class="hm-item">
+      <div class="hm-val">24/7</div>
+      <div class="hm-label">IA qualificando leads</div>
     </div>
+    <div class="hm-item">
+      <div class="hm-val">−60%</div>
+      <div class="hm-label">No-shows com FUP automático</div>
+    </div>
+  </div>
+</section>
 
-    <!-- SEÇÃO 2 - APRENDER NA PRÁTICA -->
-    <section class="learning-section">
-        <h2 class="section-title">VOCÊ VAI APRENDER NA PRÁTICA</h2>
+<!-- PROBLEM -->
+<section class="s-charcoal">
+  <div class="eyebrow reveal">Reconhece algum desses cenários?</div>
+  <h2 class="s-title reveal">A maioria das clínicas<br>enfrenta os <em>mesmos problemas.</em></h2>
+  <p class="s-sub reveal">E a solução não está em gastar mais em tráfego pago.</p>
+  <div class="prob-grid">
+    <div class="prob-item reveal">
+      <div class="prob-n">01</div>
+      <div class="prob-icon">📉</div>
+      <div class="prob-title">Lead some no WhatsApp</div>
+      <div class="prob-desc">Você investe em anúncio, o lead chega — e some. Sem FUP automatizado, o dinheiro do tráfego vai pelo ralo sem retorno.</div>
+    </div>
+    <div class="prob-item reveal d1">
+      <div class="prob-n">02</div>
+      <div class="prob-icon">⏱</div>
+      <div class="prob-title">Qualificação lenta e manual</div>
+      <div class="prob-desc">A equipe perde horas respondendo curioso. Sem triagem inteligente, trabalha dobrado para resultado pela metade.</div>
+    </div>
+    <div class="prob-item reveal d2">
+      <div class="prob-n">03</div>
+      <div class="prob-icon">💸</div>
+      <div class="prob-title">Base de pacientes parada</div>
+      <div class="prob-desc">Centenas de pacientes que já compraram — nunca mais contatados. Receita potencial ignorada sem custo de aquisição.</div>
+    </div>
+    <div class="prob-item reveal">
+      <div class="prob-n">04</div>
+      <div class="prob-icon">📅</div>
+      <div class="prob-title">Agenda com horários ociosos</div>
+      <div class="prob-desc">No-shows e cancelamentos sem protocolo de confirmação. Cada maca vazia é receita que nunca volta.</div>
+    </div>
+    <div class="prob-item reveal d1">
+      <div class="prob-n">05</div>
+      <div class="prob-icon">🔀</div>
+      <div class="prob-title">Decisão no escuro</div>
+      <div class="prob-desc">Você não sabe de onde vieram seus pacientes, qual campanha converteu, nem onde está perdendo a venda.</div>
+    </div>
+    <div class="prob-item reveal d2">
+      <div class="prob-n">06</div>
+      <div class="prob-icon">🔄</div>
+      <div class="prob-title">Crescimento que não escala</div>
+      <div class="prob-desc">Para crescer, precisa contratar mais gente. Sem automação inteligente, você troca tempo por dinheiro indefinidamente.</div>
+    </div>
+  </div>
+</section>
 
-        <div class="cards-container">
-            <!-- Card 1 -->
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <p class="card-text">
-                    Por que uma <span class="highlight">revolução silenciosa</span> já está mudando o modelo das empresas — e como os negócios que saírem na frente vão responder mais rápido, converter mais e operar com muito menos custo
-                </p>
-            </div>
+<!-- REFRAME -->
+<section class="s-obsidian" style="border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark)">
+  <div style="text-align:center;max-width:720px;margin:0 auto">
+    <h2 class="s-title reveal" style="font-size:clamp(36px,4vw,58px)">O problema não é falta de lead.<br><em>É dinheiro escondido na sua operação.</em></h2>
+    <p class="s-sub reveal" style="margin:16px auto 0">Você já tem uma base de pacientes e um fluxo de contatos. O que falta é uma operação inteligente para extrair o máximo de cada um.</p>
+  </div>
+  <div class="reframe-layout">
+    <div class="rf-item reveal">
+      <div class="rf-icon">🔁</div>
+      <div>
+        <div class="rf-title">Reativação de base</div>
+        <div class="rf-desc">Pacientes inativos têm 5× mais chance de fechar. Recupere-os com sequências personalizadas de IA antes de gastar mais em tráfego.</div>
+      </div>
+    </div>
+    <div class="rf-item reveal d1">
+      <div class="rf-icon">🎯</div>
+      <div>
+        <div class="rf-title">Qualificação instantânea</div>
+        <div class="rf-desc">Agente de IA identifica intenção, procedimento de interesse e perfil — e só envia para o time quem realmente vai fechar.</div>
+      </div>
+    </div>
+    <div class="rf-item reveal">
+      <div class="rf-icon">📅</div>
+      <div>
+        <div class="rf-title">Agenda sempre cheia</div>
+        <div class="rf-desc">FUP automático para quem não agendou, confirmação de horário e protocolo de remarcação. Nenhuma maca vazia por esquecimento.</div>
+      </div>
+    </div>
+    <div class="rf-item reveal d1">
+      <div class="rf-icon">⚡</div>
+      <div>
+        <div class="rf-title">Escala sem contratar mais</div>
+        <div class="rf-desc">Faça o trabalho de 3 atendentes com um agente de IA. Responde, qualifica e agenda 24/7 enquanto o time foca em fechar.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="card-icon">⚙️</div>
-                <p class="card-text">
-                    Os 4 erros que estão travando sua conversão agora mesmo — e como o <span class="highlight">Método ARIA</span> elimina cada um deles sem depender de equipe humana no atendimento
-                </p>
-            </div>
+<!-- WHAT IS -->
+<section class="s-charcoal2">
+  <div class="eyebrow reveal">Entenda o que é a Revora</div>
+  <h2 class="s-title reveal">Uma solução <em>completa,</em><br>não uma ferramenta isolada.</h2>
+  <div class="compare-wrap">
+    <div class="cmp-card cmp-not reveal">
+      <div class="cmp-head"><span class="x">✕</span> O que NÃO somos</div>
+      <ul class="cmp-list">
+        <li><span class="mk-no">✕</span>Só uma ferramenta de automação</li>
+        <li><span class="mk-no">✕</span>Mais um chatbot genérico de IA</li>
+        <li><span class="mk-no">✕</span>Agência que cria seus anúncios</li>
+        <li><span class="mk-no">✕</span>Software isolado sem suporte</li>
+        <li><span class="mk-no">✕</span>Promessa sem metodologia</li>
+      </ul>
+    </div>
+    <div class="cmp-card cmp-yes reveal d1">
+      <div class="cmp-head"><span class="ch">✓</span> O que SOMOS</div>
+      <ul class="cmp-list">
+        <li><span class="mk-yes">✓</span>Diagnóstico estratégico do seu funil</li>
+        <li><span class="mk-yes">✓</span>IA + Processo + Acompanhamento humano</li>
+        <li><span class="mk-yes">✓</span>Agente especializado em clínicas de estética</li>
+        <li><span class="mk-yes">✓</span>Plataforma all-in-one implantada para você</li>
+        <li><span class="mk-yes">✓</span>Resultado mensurável em 60–90 dias</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-            <!-- Card 3 -->
-            <div class="card">
-                <div class="card-icon">👑</div>
-                <p class="card-text">
-                    Como se tornar uma <span class="highlight">Empresa Autônoma</span>: seu agente de IA qualifica o lead, agenda a reunião e responde o cliente — enquanto você foca em fechar negócio
-                </p>
-            </div>
-        </div>
+<!-- AGENTS -->
+<section class="s-obsidian" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal">Módulos da plataforma</div>
+  <h2 class="s-title reveal">4 agentes de IA trabalhando<br><em>24/7</em> pela sua clínica</h2>
+  <p class="s-sub reveal">Cada agente especializado em uma etapa do processo, trabalhando de forma integrada para maximizar sua receita.</p>
+  <div class="agents-grid">
+    <div class="ag-item reveal">
+      <div class="ag-icon">🤖</div>
+      <div class="ag-title">Agente de Atendimento</div>
+      <div class="ag-desc">Responde leads no WhatsApp em segundos, identifica o procedimento de interesse e qualifica intenção antes de passar para o time.</div>
+      <span class="ag-pill">−90% no tempo de resposta</span>
+    </div>
+    <div class="ag-item reveal d1">
+      <div class="ag-icon">📅</div>
+      <div class="ag-title">Agente de Agendamento</div>
+      <div class="ag-desc">Consulta a agenda em tempo real, agenda avaliações, envia confirmações e lembretes automáticos para reduzir no-show.</div>
+      <span class="ag-pill">−60% de no-show</span>
+    </div>
+    <div class="ag-item reveal d2">
+      <div class="ag-icon">🔁</div>
+      <div class="ag-title">Agente de Reativação</div>
+      <div class="ag-desc">Identifica pacientes inativos e dispara sequências personalizadas para trazê-los de volta — sem custo de aquisição.</div>
+      <span class="ag-pill">Recupera até 20% da base</span>
+    </div>
+    <div class="ag-item reveal d3">
+      <div class="ag-icon">📊</div>
+      <div class="ag-title">Monitor de Performance</div>
+      <div class="ag-desc">Dashboard em tempo real com conversão por canal, custo por agendamento, taxa de no-show e ROI de campanha.</div>
+      <span class="ag-pill">Decisão baseada em dados</span>
+    </div>
+  </div>
+</section>
 
-        <div class="cta-section">
-            <a href="https://chat.whatsapp.com/KvqFmsRvgHO5EaedFKE3Su?mode=gi_t" class="cta-button" target="_blank" rel="noopener">
-                GARANTIR MINHA VAGA GRATUITA →
-            </a>
-        </div>
-    </section>
+<!-- FORMULA -->
+<section class="s-charcoal">
+  <div style="text-align:center">
+    <h2 class="s-title reveal">A fórmula do <em>resultado</em></h2>
+  </div>
+  <div class="formula-eq">
+    <div class="fe-item reveal">
+      <div class="fe-box">🤖</div>
+      <div class="fe-label">IA</div>
+      <div class="fe-sub">Inteligência Artificial</div>
+    </div>
+    <div class="fe-op reveal">+</div>
+    <div class="fe-item reveal d1">
+      <div class="fe-box">⚙️</div>
+      <div class="fe-label">Processo</div>
+      <div class="fe-sub">Metodologia validada</div>
+    </div>
+    <div class="fe-op reveal">+</div>
+    <div class="fe-item reveal d2">
+      <div class="fe-box">👥</div>
+      <div class="fe-label">Humano</div>
+      <div class="fe-sub">Acompanhamento real</div>
+    </div>
+    <div class="fe-op reveal">=</div>
+    <div class="fe-item reveal d3">
+      <div class="fe-box result">→</div>
+      <div class="fe-label" style="color:var(--gold)">Resultado</div>
+      <div class="fe-sub">+40% em agendamentos</div>
+    </div>
+  </div>
+  <div class="formula-box reveal">
+    <div class="formula-box-title">O que está incluso na Revora</div>
+    <div class="fi-grid">
+      <div class="fi-row"><span class="fi-dot">—</span>Diagnóstico estratégico do funil completo</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Plano de ação com templates do nicho de estética</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Implantação da plataforma all-in-one</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Agentes de IA configurados para sua clínica</div>
+      <div class="fi-row"><span class="fi-dot">—</span>CRM + automações de FUP + webhooks</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Integração com agenda e rastreamento de campanhas</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Treinamento do time para operar</div>
+      <div class="fi-row"><span class="fi-dot">—</span>Acompanhamento semanal contínuo</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="s-charcoal2" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal">Como funciona</div>
+  <h2 class="s-title reveal">Quatro etapas.<br><em>Uma clínica transformada.</em></h2>
+  <div class="process-grid">
+    <div class="ps-item reveal">
+      <div class="ps-num">1</div>
+      <div class="ps-title">Diagnóstico</div>
+      <div class="ps-desc">Mapeamos funis ativos, processos comerciais e onde estão os gargalos que te custam receita hoje.</div>
+      <div class="ps-time">Semanas 1–2</div>
+    </div>
+    <div class="ps-item reveal d1">
+      <div class="ps-num">2</div>
+      <div class="ps-title">Plano de Ação</div>
+      <div class="ps-desc">Roteiro priorizado com templates e estruturas prontas para clínicas de estética — nada genérico.</div>
+      <div class="ps-time">Semanas 2–3</div>
+    </div>
+    <div class="ps-item reveal d2">
+      <div class="ps-num">3</div>
+      <div class="ps-title">Implantação</div>
+      <div class="ps-desc">Configuramos agentes de IA, CRM, automações, integrações e rastreamento — tudo pronto para operar.</div>
+      <div class="ps-time">Semanas 4–8</div>
+    </div>
+    <div class="ps-item reveal d3">
+      <div class="ps-num">4</div>
+      <div class="ps-title">Acompanhamento</div>
+      <div class="ps-desc">FUP semanal, ajustes contínuos e novos ciclos de diagnóstico conforme a clínica cresce.</div>
+      <div class="ps-time">Contínuo</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR -->
+<section class="s-cream" id="simulador">
+  <div style="text-align:center">
+    <div class="eyebrow eyebrow-dark reveal" style="justify-content:center">Simulador de ganho</div>
+    <h2 class="s-title s-title-dark reveal" style="color:var(--text-main)">Quanto você está <em style="color:var(--gold-d)">deixando na mesa?</em></h2>
+    <p class="s-sub s-sub-dark reveal" style="margin:0 auto">Ajuste os valores e veja o impacto real da Revora no faturamento da sua clínica.</p>
+  </div>
+  <div class="sim-layout">
+    <div class="sim-inputs reveal">
+      <div class="sim-row">
+        <div class="sim-label"><span>Leads por mês (WhatsApp + DM)</span><span class="sim-label-val" id="v-leads">80</span></div>
+        <input type="range" min="20" max="500" value="80" id="s-leads" oninput="calcSim()">
+      </div>
+      <div class="sim-row">
+        <div class="sim-label"><span>Taxa de conversão atual (lead → agendamento)</span><span class="sim-label-val" id="v-conv">25%</span></div>
+        <input type="range" min="5" max="70" value="25" id="s-conv" oninput="calcSim()">
+      </div>
+      <div class="sim-row">
+        <div class="sim-label"><span>Pacientes inativos na base</span><span class="sim-label-val" id="v-inativ">200</span></div>
+        <input type="range" min="50" max="2000" step="50" value="200" id="s-inativ" oninput="calcSim()">
+      </div>
+      <div>
+        <div class="sim-ticket-label">Ticket médio por procedimento (R$)</div>
+        <input type="number" class="sim-ticket-input" id="s-ticket" value="900" oninput="calcSim()" min="100">
+      </div>
+    </div>
+    <div class="sim-results reveal d1">
+      <div class="sim-result-card">
+        <div class="sim-result-label">Faturamento atual estimado (mensal)</div>
+        <div class="sim-result-val" id="r-atual">R$ 18.000</div>
+        <div class="sim-result-sub" id="r-atual-sub">20 agendamentos × R$ 900</div>
+      </div>
+      <div class="sim-result-card">
+        <div class="sim-result-label">Faturamento com a Revora</div>
+        <div class="sim-result-val" id="r-revora">R$ 29.700</div>
+        <div class="sim-result-sub" id="r-revora-sub">33 agendamentos × R$ 900 + reativação</div>
+      </div>
+      <div class="sim-result-card hl">
+        <div class="sim-result-label">Ganho potencial mensal</div>
+        <div class="sim-result-val" id="r-ganho">+R$ 11.700</div>
+        <div class="sim-result-sub" id="r-pct">+65% de aumento estimado</div>
+      </div>
+      <div class="sim-note">* Simulação: melhora de conversão para 40% com IA + FUP, recuperação de 10% da base inativa/mês. Resultado real varia conforme a operação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="s-obsidian" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal" style="justify-content:center;text-align:center">O que nossos clientes dizem</div>
+  <h2 class="s-title reveal" style="text-align:center">Resultados <em>reais.</em></h2>
+  <div class="testi-card reveal">
+    <div class="testi-stars">★★★★★</div>
+    <div class="testi-quote">Em 60 dias, nossa agenda passou de 60% ocupada para praticamente cheia. O agente de IA qualifica os leads enquanto a equipe foca em atender. Só a reativação da base antiga já pagou o investimento inteiro.</div>
+    <div class="testi-author">
+      <div class="testi-avatar">MC</div>
+      <div>
+        <div class="testi-name">Marina Costa</div>
+        <div class="testi-role">Proprietária de Clínica de Estética · São Paulo, SP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="s-charcoal" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal">Sobre o fundador</div>
+  <h2 class="s-title reveal">Quem está por <em>trás da Revora</em></h2>
+  <div class="founder-card reveal">
+    <div class="founder-img">👤</div>
+    <div class="founder-content">
+      <div class="founder-badge">Fundador & CEO</div>
+      <div class="founder-name">[Seu Nome]</div>
+      <div class="founder-bio">
+        <p>Tenho background no mercado digital de <strong>lançamentos, perpétuo e high ticket</strong> — sempre atuando onde o faturamento realmente acontece: funil, oferta, retenção e escala.</p>
+        <p>A Revora nasceu de um problema prático: clínicas de estética que <strong>gastam fortunas em tráfego</strong> mas perdem a maioria dos leads por falta de processo e tecnologia. Enquanto o mercado empurrava mais anúncio, eu enxerguei que o dinheiro estava dentro da operação.</p>
+        <p><strong>A Revora não nasceu de teoria.</strong> Nasceu de um método que une inteligência artificial, processo comercial e acompanhamento humano — para que clínicas de alta performance parem de deixar dinheiro na mesa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="s-charcoal2" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal">Para quem é</div>
+  <h2 class="s-title reveal">A Revora é <em>ideal</em> para<br>quem já tem movimento.</h2>
+  <div class="forwho-grid">
+    <div class="fw-card reveal">
+      <div class="fw-head"><span class="fw-yes-c">●</span> A Revora é para você se...</div>
+      <ul class="fw-list">
+        <li><span class="fw-yes">✓</span>Sua clínica fatura acima de R$ 40k/mês</li>
+        <li><span class="fw-yes">✓</span>Você já recebe leads mas converte pouco</li>
+        <li><span class="fw-yes">✓</span>Você quer escalar sem contratar mais atendentes</li>
+        <li><span class="fw-yes">✓</span>Você quer visibilidade do funil e dos números</li>
+        <li><span class="fw-yes">✓</span>Você vê a clínica como negócio, não só consultório</li>
+        <li><span class="fw-yes">✓</span>Você quer parar de depender só de indicação</li>
+      </ul>
+    </div>
+    <div class="fw-card reveal d1">
+      <div class="fw-head"><span class="fw-no-c">●</span> Não é para você se...</div>
+      <ul class="fw-list">
+        <li><span class="fw-no">✕</span>Você está começando e ainda sem fluxo de leads</li>
+        <li><span class="fw-no">✕</span>Você quer que a Revora crie seus anúncios e copy</li>
+        <li><span class="fw-no">✕</span>Você não tem disposição para implementar o plano</li>
+        <li><span class="fw-no">✕</span>Você busca resultado sem nenhum processo</li>
+        <li><span class="fw-no">✕</span>Você não quer mudar nada no atendimento atual</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s-obsidian" style="border-top:1px solid var(--border-dark)">
+  <div class="eyebrow reveal" style="justify-content:center;text-align:center">Dúvidas frequentes</div>
+  <h2 class="s-title reveal" style="text-align:center">Perguntas <em>respondidas.</em></h2>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Preciso de conhecimento técnico para usar a plataforma?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Não. A plataforma é configurada e implantada por nós. Treinamos sua equipe para operar o que foi construído. Você não precisa entender de tecnologia — só de operar seu negócio.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Em quanto tempo aparecem os primeiros resultados?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Os primeiros resultados costumam aparecer entre 30 e 60 dias após a implantação — especialmente na redução de no-show e na reativação de pacientes inativos. Melhora na taxa de conversão de leads acontece entre o 2º e o 3º mês.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">A Revora vai criar meus anúncios e páginas de vendas?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Não. A Revora é consultoria estratégica e implantação de tecnologia. Entregamos o diagnóstico, plano de ação com templates e a plataforma completa. A criação de anúncios e copy é responsabilidade do seu time ou de quem você contratar.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Como funciona o agente de IA no WhatsApp?<span class="faq-icon">+</span></button>
+      <div class="faq-a">O agente responde leads automaticamente, identifica o procedimento de interesse, qualifica a intenção de compra e oferece agendamento de avaliação — tudo dentro do WhatsApp. Quando o lead está qualificado, é direcionado para o time humano fechar.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">E se eu já usar outro CRM ou sistema de agendamento?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Avaliamos isso no diagnóstico. Em muitos casos fazemos integração via webhook. Em outros, a migração para a plataforma Revora faz mais sentido por consolidar CRM, automações e IA em um só lugar.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Qual é o investimento?<span class="faq-icon">+</span></button>
+      <div class="faq-a">O modelo é setup único (implantação completa) + mensalidade de acompanhamento contínuo. Os valores são apresentados após o diagnóstico gratuito, porque cada clínica tem uma realidade diferente e queremos ser transparentes sobre o que faz sentido para o seu caso.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec s-obsidian" id="cta">
+  <h2 class="cta-title reveal">
+    Pronto para parar de perder pacientes<br>
+    que já chegaram <em>até você?</em>
+  </h2>
+  <p class="cta-sub reveal">Agende um diagnóstico estratégico gratuito. Você sai com clareza sobre onde está perdendo receita — mesmo que não contrate a Revora.</p>
+  <a href="https://wa.me/5515999999999?text=Olá!%20Quero%20agendar%20um%20diagnóstico%20gratuito%20para%20minha%20clínica." class="btn-gold reveal" target="_blank" style="position:relative">
+    Agendar diagnóstico gratuito →
+  </a>
+  <p class="cta-micro reveal">Sem compromisso &nbsp;·&nbsp; 100% focado em resultado &nbsp;·&nbsp; Vagas limitadas</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="s-obsidian" style="position:relative;z-index:1">
+  <div class="footer-logo">Revora<span>.</span></div>
+  <div class="footer-copy">© 2025 Revora · IA + Processo + Resultado para clínicas de estética</div>
+  <div class="footer-copy">contato@revora.com.br</div>
+</footer>
+
+<script>
+// REVEAL
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:.08});
+reveals.forEach(el=>obs.observe(el));
+
+// FAQ
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// SIMULATOR
+function fmt(n){return'R$ '+Math.round(n).toLocaleString('pt-BR')}
+function calcSim(){
+  const leads=+document.getElementById('s-leads').value;
+  const convPct=+document.getElementById('s-conv').value;
+  const inativ=+document.getElementById('s-inativ').value;
+  const ticket=+document.getElementById('s-ticket').value||0;
+  document.getElementById('v-leads').textContent=leads;
+  document.getElementById('v-conv').textContent=convPct+'%';
+  document.getElementById('v-inativ').textContent=inativ;
+  const convAtual=convPct/100;
+  const agAtual=Math.round(leads*convAtual);
+  const fatAtual=agAtual*ticket;
+  const convRevora=Math.min(convPct*1.6,70)/100;
+  const agRevora=Math.round(leads*convRevora);
+  const reat=Math.round(inativ*.1);
+  const fatRevora=(agRevora+reat)*ticket;
+  const ganho=fatRevora-fatAtual;
+  const pct=fatAtual>0?Math.round(ganho/fatAtual*100):0;
+  document.getElementById('r-atual').textContent=fmt(fatAtual);
+  document.getElementById('r-atual-sub').textContent=agAtual+' agendamentos × R$ '+ticket.toLocaleString('pt-BR');
+  document.getElementById('r-revora').textContent=fmt(fatRevora);
+  document.getElementById('r-revora-sub').textContent=(agRevora+reat)+' agendamentos × R$ '+ticket.toLocaleString('pt-BR')+' + reativação';
+  document.getElementById('r-ganho').textContent='+'+fmt(ganho);
+  document.getElementById('r-pct').textContent='+'+pct+'% de aumento estimado';
+}
+calcSim();
+</script>
 </body>
 </html>

@@ -1233,15 +1233,15 @@ async function handleSubmit(e){
   btn.disabled=true;
 
   const data={
-    nome:form.nome.value.trim(),
+    name:form.nome.value.trim(),
     email:form.email.value.trim(),
-    telefone:form.telefone.value.trim(),
+    phone:form.telefone.value.trim(),
   };
 
   try{
-    await fetch('https://webhook.pluglead.com/webhook/2d8c6434-1255-480f-95d1-47296655827d',{
+    await fetch('https://webhook.pluglead.com/webhook/f79328a6-0fcf-4a5f-8b90-e876a94e21f4',{
       method:'POST',
-      headers:{'Content-Type':'text/plain'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify(data),
       mode:'no-cors',
     });

@@ -1234,7 +1234,6 @@ async function handleSubmit(e){
 
   const data={
     name:form.nome.value.trim(),
-    email:form.email.value.trim(),
     phone:form.telefone.value.trim(),
   };
 
@@ -1243,7 +1242,6 @@ async function handleSubmit(e){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(data),
-      mode:'no-cors',
     });
   }catch(err){
     console.warn('Webhook error (non-blocking):', err);

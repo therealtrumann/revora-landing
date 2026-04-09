@@ -1148,10 +1148,6 @@ footer{
       <div class="faq-a">Depende do diagnóstico. Em muitos casos integramos com o que você já usa. Quando identificamos que a plataforma atual é um limitador de crescimento, migramos tudo — e nós cuidamos de toda a transição.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">A Revora cria as minhas campanhas e posts?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Não. A Revora estrutura estratégia, processos e tecnologia — a execução criativa de conteúdo e mídia paga fica com você ou com seus fornecedores. Somos especialistas em sistema operacional, não em agência de marketing.</div>
-    </div>
-    <div class="faq-item">
       <button class="faq-q">Em quanto tempo vejo resultado?<span class="faq-icon">+</span></button>
       <div class="faq-a">Os primeiros sinais aparecem ainda na fase de implantação. Resultados consistentes e mensuráveis — aumento de faturamento, redução de custos, crescimento de conversões — se consolidam entre 60 e 90 dias.</div>
     </div>
@@ -1185,18 +1181,6 @@ footer{
   <p class="cta-final-note fade-up d4">Diagnóstico gratuito · Sem compromisso · Resultado em 90 dias</p>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-left">
-    <strong style="color:rgba(255,255,255,0.4)">Revora System</strong><br>
-    © 2025 Revora. Todos os direitos reservados.
-  </div>
-  <div class="footer-links">
-    <a href="#">Política de Privacidade</a>
-    <a href="#">Termos de Uso</a>
-    <a href="#">Contato</a>
-  </div>
-</footer>
 
 <script>
 // ─── Modal ───
@@ -1224,19 +1208,31 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeModal();
 });
 
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
   const form=e.target;
+  const btn=form.querySelector('.modal-submit');
+  btn.textContent='Enviando...';
+  btn.disabled=true;
+
   const data={
-    nome:form.nome.value,
-    email:form.email.value,
-    telefone:form.telefone.value,
+    nome:form.nome.value.trim(),
+    email:form.email.value.trim(),
+    telefone:form.telefone.value.trim(),
   };
-  // Integre aqui com sua plataforma (ActiveCampaign, Mailchimp, webhook, etc.)
-  console.log('Lead capturado:', data);
-  // Redirecionar após envio (troque pela URL desejada):
-  // window.location.href = 'https://sualink.com/obrigado';
-  form.innerHTML='<p style="text-align:center;color:var(--gold);font-size:18px;padding:20px 0">✓ Recebemos seus dados!<br><span style="font-size:14px;color:rgba(255,255,255,0.5);font-weight:300">Em breve entraremos em contato.</span></p>';
+
+  try{
+    await fetch('https://webhook.pluglead.com/webhook/2d8c6434-1255-480f-95d1-47296655827d',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data),
+      mode:'no-cors',
+    });
+  }catch(err){
+    console.warn('Webhook error (non-blocking):', err);
+  }
+
+  window.location.href='/obrigado.html';
 }
 
 // ─── FAQ Accordion ───

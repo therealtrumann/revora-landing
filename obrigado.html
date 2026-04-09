@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revora System — Recebemos seu contato!</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0B0B0B;
+  --gold:#C9A84C;
+  --gold-l:#E8D5A0;
+  --gold-border:rgba(201,168,76,0.25);
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:40px 5%;
+  position:relative;
+  overflow:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,168,76,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+/* Logo */
+.logo-mark{
+  display:flex;flex-direction:column;align-items:center;
+  gap:6px;text-decoration:none;
+  margin-bottom:52px;
+  animation:fadeUp .6s ease both;
+}
+.logo-main{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;
+  letter-spacing:0.15em;color:var(--gold);
+  line-height:1;text-transform:uppercase;
+}
+.logo-sub{display:flex;align-items:center;gap:10px}
+.logo-sub-line{width:28px;height:1px;background:var(--gold);opacity:0.5}
+.logo-sub-text{
+  font-family:'Inter',sans-serif;
+  font-size:9px;font-weight:600;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);opacity:0.7;
+}
+
+/* Check */
+.check-wrap{
+  width:80px;height:80px;
+  background:rgba(201,168,76,0.08);
+  border:1px solid var(--gold-border);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 32px;
+  animation:fadeUp .6s .1s ease both;
+  position:relative;
+}
+.check-wrap::before{
+  content:'';
+  position:absolute;inset:-8px;
+  border:1px solid rgba(201,168,76,0.12);
+  border-radius:50%;
+}
+.check-wrap svg{
+  width:36px;height:36px;
+  stroke:var(--gold);
+  stroke-width:2.5;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:60;
+  stroke-dashoffset:60;
+  animation:drawCheck .6s .4s ease forwards;
+}
+@keyframes drawCheck{
+  to{stroke-dashoffset:0}
+}
+
+/* Text */
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--gold-border);
+  padding:7px 18px;
+  margin-bottom:24px;
+  animation:fadeUp .6s .2s ease both;
+}
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,5vw,52px);
+  font-weight:700;
+  line-height:1.1;
+  max-width:640px;
+  margin:0 auto 20px;
+  animation:fadeUp .6s .3s ease both;
+}
+.title em{font-style:italic;color:var(--gold)}
+
+.body-text{
+  font-size:clamp(15px,2vw,18px);
+  font-weight:300;
+  color:rgba(255,255,255,0.5);
+  max-width:480px;
+  margin:0 auto;
+  line-height:1.8;
+  animation:fadeUp .6s .4s ease both;
+}
+.body-text strong{color:rgba(255,255,255,0.85);font-weight:500}
+
+/* Countdown */
+.countdown-wrap{
+  margin:36px auto 0;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  animation:fadeUp .6s .5s ease both;
+}
+.countdown-label{
+  font-size:11px;font-weight:600;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+}
+.countdown-bar-wrap{
+  width:220px;height:3px;
+  background:rgba(201,168,76,0.12);
+  border-radius:2px;
+  overflow:hidden;
+}
+.countdown-bar{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold-border),var(--gold));
+  border-radius:2px;
+  width:100%;
+  animation:countdown 120s linear forwards;
+  transform-origin:left;
+}
+@keyframes countdown{
+  to{width:0%}
+}
+
+/* Whatsapp hint */
+.wa-hint{
+  margin-top:40px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  border:1px solid var(--gold-border);
+  padding:18px 28px;
+  max-width:420px;
+  margin-left:auto;margin-right:auto;
+  animation:fadeUp .6s .6s ease both;
+  margin-top:40px;
+}
+.wa-icon{font-size:28px}
+.wa-text{
+  font-size:13px;font-weight:400;
+  color:rgba(255,255,255,0.5);
+  text-align:left;
+  line-height:1.5;
+}
+.wa-text strong{color:var(--white);font-weight:600;display:block;font-size:14px;margin-bottom:2px}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:480px){
+  body{padding:32px 5%}
+  .logo-mark{margin-bottom:40px}
+  .wa-hint{padding:16px 18px}
+  .wa-text{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+  <a href="/" class="logo-mark">
+    <span class="logo-main">Revora</span>
+    <div class="logo-sub">
+      <span class="logo-sub-line"></span>
+      <span class="logo-sub-text">System</span>
+      <span class="logo-sub-line"></span>
+    </div>
+  </a>
+
+  <div class="check-wrap">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+
+  <div class="tag">Contato recebido</div>
+
+  <h1 class="title">
+    Recebemos seu contato.<br>
+    <em>Em instantes te chamamos.</em>
+  </h1>
+
+  <p class="body-text">
+    Já recebemos seus dados e <strong>em até 2 minutos</strong> nosso time vai te chamar no WhatsApp para dar continuidade ao seu diagnóstico gratuito.
+  </p>
+
+  <div class="countdown-wrap">
+    <span class="countdown-label">Aguarde — nosso time está sendo notificado</span>
+    <div class="countdown-bar-wrap">
+      <div class="countdown-bar"></div>
+    </div>
+  </div>
+
+  <div class="wa-hint">
+    <div class="wa-icon">📲</div>
+    <div class="wa-text">
+      <strong>Fique de olho no WhatsApp</strong>
+      Você vai receber uma mensagem do nosso time em breve. Pode manter o celular por perto.
+    </div>
+  </div>
+
+</body>
+</html>

@@ -627,6 +627,13 @@ section{padding:96px 5%;position:relative;z-index:1}
   position:relative;
 }
 .cta-banner-btn{position:relative}
+.cta-banner-note{
+  margin-top:16px;
+  font-size:11px;
+  color:rgba(255,255,255,0.25);
+  letter-spacing:0.06em;
+  position:relative;
+}
 
 /* ─── COMO FUNCIONA ─── */
 .process-grid{
@@ -777,41 +784,87 @@ footer{
 .footer-links a:hover{color:var(--gold)}
 
 /* ─── RESPONSIVIDADE ─── */
-@media(max-width:768px){
-  section{padding:72px 5%}
+/* ─── MOBILE FIRST — base styles already mobile-optimized above ─── */
 
-  .hero{padding:60px 5% 60px}
-
-  .pain-grid{grid-template-columns:1fr}
-  .pain-item{padding:22px 24px}
-
-  .benefits-grid{grid-template-columns:1fr}
-  .benefit-card{padding:28px 24px}
-
+@media(max-width:900px){
+  .benefits-grid{grid-template-columns:1fr 1fr}
   .proof-numbers{grid-template-columns:repeat(2,1fr)}
   .pn-item:nth-child(2){border-right:none}
   .pn-item:nth-child(3){border-top:1px solid rgba(201,168,76,0.12)}
   .pn-item:nth-child(4){border-top:1px solid rgba(201,168,76,0.12);border-right:none}
-
-  .testi-card{padding:36px 28px}
-  .testi-quote-icon{font-size:70px;top:8px;left:16px}
-
-  .process-grid{grid-template-columns:1fr;gap:40px}
   .process-grid::before{display:none}
-  .ps-item{padding:0 10px}
-
-  footer{flex-direction:column;align-items:flex-start;gap:16px}
-  .footer-links{flex-wrap:wrap;gap:16px}
 }
 
-@media(max-width:480px){
-  .hero-badge{font-size:9px;padding:7px 16px}
-  .logo-main{font-size:20px}
-  .btn-gold{font-size:12px;padding:16px 32px;width:100%;justify-content:center}
-  .btn-outline{font-size:11px;padding:14px 24px;width:100%;justify-content:center}
+@media(max-width:768px){
+  section{padding:64px 6%}
+  .hero{padding:52px 6% 56px}
+  .cta-banner{padding:64px 6%}
+
+  /* pain grid — 1 col */
+  .pain-grid{grid-template-columns:1fr}
+  .pain-item{padding:20px 22px}
+
+  /* benefits — 1 col */
+  .benefits-grid{grid-template-columns:1fr}
+  .benefit-card{padding:28px 24px}
+
+  /* process — vertical */
+  .process-grid{grid-template-columns:1fr;gap:36px}
+  .ps-item{padding:0}
+  .ps-num{width:60px;height:60px;font-size:22px;margin-bottom:18px}
+
+  /* testimonial */
+  .testi-card{padding:32px 24px}
+  .testi-quote-icon{font-size:60px;top:8px;left:12px}
+  .testi-text{font-size:17px}
+
+  /* footer */
+  footer{flex-direction:column;align-items:flex-start;gap:14px}
+  .footer-links{flex-wrap:wrap;gap:14px}
+}
+
+@media(max-width:600px){
+  section{padding:56px 5%}
+  .hero{padding:44px 5% 48px}
+
+  /* hero headline */
+  .hero-headline{font-size:clamp(28px,8vw,44px);line-height:1.12}
+  .hero-sub{font-size:15px;max-width:100%}
+
+  /* section titles */
+  .section-title{font-size:clamp(24px,7vw,36px)}
+  .section-sub{font-size:14px;margin-bottom:40px}
+
+  /* buttons full width */
+  .btn-gold{
+    width:100%;justify-content:center;
+    font-size:13px;padding:17px 24px;
+  }
   .hero-cta{width:100%}
+  .pain-cta,.benefits-cta,.process-cta{width:100%}
+  .pain-cta a,.benefits-cta a,.process-cta a{width:100%;justify-content:center}
+
+  /* proof numbers 2x2 */
   .proof-numbers{grid-template-columns:1fr 1fr}
-  .cta-banner{padding:60px 5%}
+
+  /* benefits — 1 col */
+  .benefits-grid{grid-template-columns:1fr}
+
+  /* modal */
+  .modal-box{padding:32px 20px 28px}
+  .modal-logo-main{font-size:22px}
+  .modal-title{font-size:14px}
+
+  /* cta banner */
+  .cta-banner{padding:56px 5%}
+  .cta-banner-title{font-size:clamp(22px,6vw,36px)}
+  .cta-banner-btn a{width:100%;justify-content:center}
+
+  /* bigidea */
+  .bigidea-wrap p{font-size:15px}
+
+  /* faq */
+  .faq-q{font-size:14px}
 }
 
 /* ─── FADE UP ANIMATION ─── */
@@ -872,7 +925,7 @@ footer{
 <!-- ─── HERO ─── -->
 <section class="hero">
   <h1 class="hero-headline fade-up">
-    Dobre o faturamento da sua clínica de estética em <em>90 dias</em> através de um sistema de crescimento único que já escalou <em>+50 clínicas</em> parceiras
+    <em>Dobre o faturamento</em> da sua clínica de estética em <em>90 dias</em> através de um sistema de crescimento único que já escalou <em>+50 clínicas</em> parceiras
   </h1>
 
   <p class="hero-sub fade-up d1">
@@ -907,38 +960,38 @@ footer{
 <!-- ─── SEÇÃO DORES ─── -->
 <section class="s-dark">
   <div class="section-eyebrow fade-up">Você se identifica?</div>
-  <h2 class="section-title fade-up d1">Se algum desses cenários <em>soa familiar,</em><br>você está no lugar certo.</h2>
-  <p class="section-sub fade-up d2">Esses não são problemas de esforço. São falhas no sistema operacional do seu negócio.</p>
+  <h2 class="section-title fade-up d1">Se algum desses cenários soa familiar,<br><em>você está no lugar certo.</em></h2>
+  <p class="section-sub fade-up d2">Esses não são problemas de dedicação. São lacunas no modelo de operação da sua clínica.</p>
 
   <div class="pain-grid">
     <div class="pain-item fade-up">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Você investe em tráfego,</strong> o lead chega — e some antes de alguém responder.</p>
+      <p class="pain-text"><strong>Você investe em tráfego,</strong> o lead chega — e esfria porque a recepção estava ocupada ou demorou para responder.</p>
     </div>
     <div class="pain-item fade-up d1">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Sua equipe passa horas</strong> qualificando leads que nunca vão fechar.</p>
+      <p class="pain-text"><strong>Sua equipe passa o dia respondendo</strong> mensagens repetitivas, agendando e confirmando — em vez de vender e atender.</p>
     </div>
     <div class="pain-item fade-up">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Centenas de clientes inativos</strong> na sua base que nunca mais foram contatados.</p>
+      <p class="pain-text"><strong>Centenas de pacientes inativos</strong> na sua base que nunca mais receberam uma oferta personalizada ou reativação.</p>
     </div>
     <div class="pain-item fade-up d1">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Para crescer, você precisa contratar mais.</strong> Sem automação, escala significa mais custo.</p>
+      <p class="pain-text"><strong>Para crescer, você precisa contratar mais.</strong> Sem processos estruturados, cada novo funcionário aumenta o caos.</p>
     </div>
     <div class="pain-item fade-up">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Você não sabe</strong> qual canal trouxe o cliente, qual campanha converteu ou onde está perdendo venda.</p>
+      <p class="pain-text"><strong>Você não sabe</strong> qual procedimento tem maior margem, qual campanha gerou retorno real ou onde o faturamento está escapando.</p>
     </div>
     <div class="pain-item fade-up d1">
       <div class="pain-dot"></div>
-      <p class="pain-text"><strong>A operação depende de você.</strong> Se você para, o resultado para junto.</p>
+      <p class="pain-text"><strong>A clínica depende de você.</strong> Se você sai da operação por uma semana, tudo desacelera.</p>
     </div>
   </div>
 
   <div class="pain-cta">
-    <a href="#cta-final" class="btn-gold fade-up">
+    <a href="#" class="btn-gold open-modal fade-up">
       Quero Resolver Isso <span class="arrow">→</span>
     </a>
   </div>
@@ -947,50 +1000,50 @@ footer{
 <!-- ─── BIG IDEA ─── -->
 <section class="s-black">
   <div class="section-eyebrow fade-up">A solução</div>
-  <h2 class="section-title fade-up d1">Apresentando o <em>Revora System</em></h2>
+  <h2 class="section-title fade-up d1">Apresentando o <em>ecossistema Revora</em></h2>
   <div class="bigidea-divider"></div>
   <div class="bigidea-wrap">
-    <p class="fade-up">O problema não é falta de lead, nem falta de esforço. <strong>É falta de sistema.</strong> Enquanto você depende de pessoas para responder, qualificar e agendar — você está perdendo dinheiro todos os dias.</p>
-    <p class="fade-up d1">O <em>Revora System</em> é um sistema operacional de vendas com IA implantado sob medida no seu negócio. Ele <strong>responde, qualifica, agenda e acompanha</strong> cada lead — 24 horas, 7 dias por semana, sem depender de equipe.</p>
-    <p class="fade-up d2">Não é um chatbot genérico. Não é uma ferramenta isolada. É um <strong>sistema completo</strong> que transforma seu processo comercial de ponta a ponta, com resultado mensurável em 60 dias.</p>
+    <p class="fade-up">O problema não é falta de pacientes, nem falta de esforço. <strong>É falta de um sistema que opere a clínica por você.</strong> Enquanto a gestão depende da sua presença diária para funcionar — você está limitando o crescimento com as próprias mãos.</p>
+    <p class="fade-up d1">A Revora é o ecossistema de gestão e crescimento para clínicas estéticas que faturam acima de R$40k/mês. Combinamos <em>tecnologia com IA, consultoria comercial</em> e acompanhamento semanal de resultados — para que você cuide dos pacientes enquanto o sistema cuida do negócio.</p>
+    <p class="fade-up d2">Não é um software. Não é uma consultoria. É um <strong>sistema operacional completo</strong> implantado sob medida na sua clínica, com resultado mensurável em 90 dias.</p>
   </div>
 </section>
 
-<!-- ─── BENEFÍCIOS ─── -->
+<!-- ─── PILARES ─── -->
 <section class="s-dark">
-  <div class="section-eyebrow fade-up">O que você ganha</div>
-  <h2 class="section-title fade-up d1">4 resultados que o sistema<br><em>entrega no seu negócio</em></h2>
-  <p class="section-sub fade-up d2">Não são promessas. São entregáveis mensuráveis.</p>
+  <div class="section-eyebrow fade-up">O que você recebe</div>
+  <h2 class="section-title fade-up d1">4 pilares que transformam<br><em>a operação da sua clínica</em></h2>
+  <p class="section-sub fade-up d2">Não são promessas. São entregas estruturadas com métricas claras.</p>
 
   <div class="benefits-grid">
     <div class="benefit-card fade-up">
-      <span class="benefit-icon">📈</span>
-      <div class="benefit-title">Previsibilidade</div>
-      <p class="benefit-desc">Saiba exatamente quantos leads entram, quantos convertem e quanto vai faturar. Chega de operar no escuro.</p>
-      <span class="benefit-tag">→ Dashboard em tempo real</span>
+      <span class="benefit-icon">💰</span>
+      <div class="benefit-title">Vendas</div>
+      <p class="benefit-desc">Reestruturamos sua oferta, precificação e scripts de fechamento para aumentar o ticket médio e a taxa de conversão em consultas.</p>
+      <span class="benefit-tag">→ Mais receita por paciente</span>
     </div>
     <div class="benefit-card fade-up d1">
-      <span class="benefit-icon">⚡</span>
-      <div class="benefit-title">Velocidade de Resposta</div>
-      <p class="benefit-desc">IA responde em segundos, qualifica o lead e agenda a reunião — enquanto você está dormindo.</p>
-      <span class="benefit-tag">→ −90% no tempo de resposta</span>
+      <span class="benefit-icon">📣</span>
+      <div class="benefit-title">Marketing</div>
+      <p class="benefit-desc">Funis de captação e reativação de pacientes com IA — do primeiro contato ao agendamento, sem depender da sua equipe para cada etapa.</p>
+      <span class="benefit-tag">→ Agenda sempre preenchida</span>
     </div>
     <div class="benefit-card fade-up d2">
-      <span class="benefit-icon">🔁</span>
-      <div class="benefit-title">Escala Sem Contratar</div>
-      <p class="benefit-desc">Faça o trabalho de 3 atendentes com um agente de IA. Cresça sem aumentar o custo fixo.</p>
-      <span class="benefit-tag">→ Operação 24/7 sem custo adicional</span>
+      <span class="benefit-icon">⚙️</span>
+      <div class="benefit-title">Gestão</div>
+      <p class="benefit-desc">Plataforma all-in-one configurada para a sua clínica: CRM, prontuários, financeiro, agendamento e relatórios em um só lugar.</p>
+      <span class="benefit-tag">→ Operação sem caos</span>
     </div>
     <div class="benefit-card fade-up d3">
-      <span class="benefit-icon">💰</span>
-      <div class="benefit-title">Mais Lucro por Lead</div>
-      <p class="benefit-desc">Reative clientes inativos, reduza no-shows e recupere oportunidades que você estava deixando na mesa.</p>
-      <span class="benefit-tag">→ Recupera até 20% da base</span>
+      <span class="benefit-icon">📈</span>
+      <div class="benefit-title">Crescimento</div>
+      <p class="benefit-desc">Análise semanal de métricas com a Revora. Identificamos o que está funcionando, eliminamos o que não funciona e escalamos o que traz resultado.</p>
+      <span class="benefit-tag">→ Parceria ativa, todo semana</span>
     </div>
   </div>
 
   <div class="benefits-cta">
-    <a href="#cta-final" class="btn-gold fade-up">
+    <a href="#" class="btn-gold open-modal fade-up">
       Quero Esses Resultados <span class="arrow">→</span>
     </a>
   </div>
@@ -1000,36 +1053,36 @@ footer{
 <section class="s-black">
   <div class="section-eyebrow fade-up">Resultados reais</div>
   <h2 class="section-title fade-up d1">Números que<br><em>falam por si.</em></h2>
-  <p class="section-sub fade-up d2">Empresas que implementaram o Revora System.</p>
+  <p class="section-sub fade-up d2">Clínicas que implementaram o ecossistema Revora nos últimos 12 meses.</p>
 
   <div class="proof-numbers fade-up">
     <div class="pn-item">
-      <div class="pn-val">+40%</div>
-      <div class="pn-label">Aumento médio em conversão</div>
+      <div class="pn-val">+30%</div>
+      <div class="pn-label">Aumento médio de faturamento em 90 dias</div>
     </div>
     <div class="pn-item">
-      <div class="pn-val">24/7</div>
-      <div class="pn-label">Atendimento sem interrupção</div>
+      <div class="pn-val">−20%</div>
+      <div class="pn-label">Redução de custo operacional no 1º trimestre</div>
     </div>
     <div class="pn-item">
-      <div class="pn-val">−60%</div>
-      <div class="pn-label">Redução de no-shows</div>
+      <div class="pn-val">2×</div>
+      <div class="pn-label">Volume de conversas qualificadas por mês</div>
     </div>
     <div class="pn-item">
-      <div class="pn-val">60d</div>
-      <div class="pn-label">Para ver resultado mensurável</div>
+      <div class="pn-val">90d</div>
+      <div class="pn-label">Para resultado mensurável e consistente</div>
     </div>
   </div>
 
   <div class="testi-card fade-up">
     <div class="testi-quote-icon">"</div>
     <div class="testi-stars">★★★★★</div>
-    <p class="testi-text">"Antes eu perdia lead porque a equipe demorava para responder. Hoje o sistema responde em segundos, qualifica e já agenda a reunião. Meu faturamento cresceu 42% em 3 meses sem contratar ninguém."</p>
+    <p class="testi-text">"Minha clínica faturava bem, mas eu estava dentro de tudo. Não conseguia tirar férias sem o movimento cair. Depois da Revora, a operação continuou mesmo quando estive fora por dez dias. Hoje tenho previsibilidade de agenda, números claros e uma equipe que sabe o que fazer — sem me precisar."</p>
     <div class="testi-author">
-      <div class="testi-avatar">M</div>
+      <div class="testi-avatar">F</div>
       <div>
-        <div class="testi-name">Marcos Oliveira</div>
-        <div class="testi-role">Diretor Comercial · Empresa de Software</div>
+        <div class="testi-name">Dra. Fernanda Cassis</div>
+        <div class="testi-role">Proprietária · Clínica de Estética Avançada · São Paulo</div>
       </div>
     </div>
   </div>
@@ -1037,42 +1090,43 @@ footer{
 
 <!-- ─── CTA BANNER ─── -->
 <div class="cta-banner">
-  <h2 class="cta-banner-title fade-up">Pronto para parar de <em>deixar dinheiro na mesa?</em></h2>
-  <p class="cta-banner-sub fade-up d1">Agende um diagnóstico gratuito e veja exatamente onde seu negócio está perdendo receita.</p>
+  <h2 class="cta-banner-title fade-up">Pronta para ter uma clínica que cresce<br><em>sem depender de você?</em></h2>
+  <p class="cta-banner-sub fade-up d1">Agende um diagnóstico gratuito e veja exatamente onde sua clínica está deixando receita na mesa.</p>
   <div class="cta-banner-btn fade-up d2">
     <a href="#" class="btn-gold open-modal">Quero Meu Diagnóstico Gratuito <span class="arrow">→</span></a>
   </div>
+  <p class="cta-banner-note fade-up d3">Vagas limitadas · Sem compromisso · 60 minutos</p>
 </div>
 
 <!-- ─── COMO FUNCIONA ─── -->
 <section class="s-darker">
   <div class="section-eyebrow fade-up">Como funciona</div>
-  <h2 class="section-title fade-up d1">3 passos para <em>transformar<br>seu processo comercial</em></h2>
-  <p class="section-sub fade-up d2">Simples, rápido e sem burocracia.</p>
+  <h2 class="section-title fade-up d1">3 etapas para implantar<br><em>o ecossistema na sua clínica</em></h2>
+  <p class="section-sub fade-up d2">Nenhuma burocracia. Nenhuma exigência técnica da sua parte.</p>
 
   <div class="process-grid">
     <div class="ps-item fade-up">
       <div class="ps-num">01</div>
       <div class="ps-title">Diagnóstico Estratégico</div>
-      <p class="ps-desc">Mapeamos seu funil atual, identificamos os gargalos e onde você está perdendo receita hoje.</p>
-      <div class="ps-time">1 sessão · 60 min</div>
+      <p class="ps-desc">Mapeamos o funil comercial atual, a operação interna e os principais gargalos de faturamento e retenção da sua clínica.</p>
+      <div class="ps-time">1 sessão · 60 minutos · Gratuito</div>
     </div>
     <div class="ps-item fade-up d1">
       <div class="ps-num">02</div>
-      <div class="ps-title">Implantação do Sistema</div>
-      <p class="ps-desc">Configuramos e implantamos o Revora System sob medida para o seu modelo de negócio e seus clientes.</p>
-      <div class="ps-time">7 a 14 dias</div>
+      <div class="ps-title">Implantação do Ecossistema</div>
+      <p class="ps-desc">Configuramos a plataforma, estruturamos os processos comerciais e implementamos a IA de atendimento sob medida para o perfil da sua clínica e dos seus pacientes.</p>
+      <div class="ps-time">7 a 14 dias · A Revora cuida de tudo</div>
     </div>
     <div class="ps-item fade-up d2">
       <div class="ps-num">03</div>
-      <div class="ps-title">Resultados e Escala</div>
-      <p class="ps-desc">Acompanhamos os resultados, otimizamos em tempo real e escalamos o que está funcionando.</p>
-      <div class="ps-time">A partir do dia 30</div>
+      <div class="ps-title">Crescimento com Acompanhamento</div>
+      <p class="ps-desc">Toda semana analisamos os resultados com você, otimizamos o que pode melhorar e escalamos o que está convertendo. Você nunca opera sozinha.</p>
+      <div class="ps-time">A partir do dia 30 · Parceria contínua</div>
     </div>
   </div>
 
   <div class="process-cta">
-    <a href="#cta-final" class="btn-gold fade-up">
+    <a href="#" class="btn-gold open-modal fade-up">
       Começar Agora <span class="arrow">→</span>
     </a>
   </div>
@@ -1086,46 +1140,28 @@ footer{
 
   <div class="faq-wrap fade-up">
     <div class="faq-item">
-      <button class="faq-q">
-        Para qual tipo de empresa o Revora System funciona?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">Funciona para pequenas e médias empresas que já têm um fluxo de leads e querem automatizar o atendimento, qualificação e agendamento. Não é para negócios que estão começando do zero.</div>
+      <button class="faq-q">Para qual tipo de clínica a Revora funciona?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Para clínicas estéticas que já têm operação estabelecida — equipe, fluxo de pacientes e faturamento acima de R$40k/mês — e querem estruturar a gestão, profissionalizar o comercial e escalar com previsibilidade. Não trabalhamos com clínicas que estão iniciando do zero.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">
-        Preciso ter uma equipe técnica para implementar?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">Não. A Revora cuida de toda a implantação. Você não precisa saber programar nem ter equipe de TI. Entregamos tudo configurado e funcionando.</div>
+      <button class="faq-q">Preciso trocar meu sistema atual?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Depende do diagnóstico. Em muitos casos integramos com o que você já usa. Quando identificamos que a plataforma atual é um limitador de crescimento, migramos tudo — e nós cuidamos de toda a transição.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">
-        Em quanto tempo vejo resultado?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">A maioria dos clientes já começa a ver diferença na primeira semana de operação. Resultados consolidados e mensuráveis aparecem entre 30 e 60 dias após a implantação.</div>
+      <button class="faq-q">A Revora cria as minhas campanhas e posts?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Não. A Revora estrutura estratégia, processos e tecnologia — a execução criativa de conteúdo e mídia paga fica com você ou com seus fornecedores. Somos especialistas em sistema operacional, não em agência de marketing.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">
-        O sistema funciona com WhatsApp?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">Sim. O Revora System opera nativamente no WhatsApp, além de outros canais como Instagram e e-mail. O agente responde, qualifica e agenda sem intervenção humana.</div>
+      <button class="faq-q">Em quanto tempo vejo resultado?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Os primeiros sinais aparecem ainda na fase de implantação. Resultados consistentes e mensuráveis — aumento de faturamento, redução de custos, crescimento de conversões — se consolidam entre 60 e 90 dias.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">
-        O diagnóstico é realmente gratuito?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">Sim. O diagnóstico estratégico é gratuito e sem compromisso. Mas as vagas são limitadas — trabalhamos com poucos clientes por vez para garantir qualidade.</div>
+      <button class="faq-q">O diagnóstico é realmente gratuito?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Sim. O diagnóstico estratégico é gratuito e sem compromisso de contratação. Você sai da sessão com clareza sobre os gargalos da sua clínica — independente de qualquer decisão. Mas as vagas são limitadas: atendemos poucos clientes por mês para garantir qualidade de entrega.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">
-        O que acontece depois do diagnóstico?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">Você recebe um mapa claro do seu funil, os principais gargalos identificados e uma proposta de como o Revora System se aplica ao seu negócio. Você decide se quer avançar.</div>
+      <button class="faq-q">O que acontece após o diagnóstico?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Você recebe um mapa detalhado da operação atual, os principais pontos de perda de receita identificados e uma proposta de como o ecossistema Revora se aplica especificamente à sua clínica. Você decide se quer avançar — sem pressão.</div>
     </div>
   </div>
 </section>
@@ -1134,15 +1170,19 @@ footer{
 <section class="cta-final" id="cta-final">
   <div class="cta-final-label fade-up">Última chamada</div>
   <h2 class="cta-final-title fade-up d1">
-    Cada dia sem sistema<br>é <em>receita que não volta.</em>
+    Cada mês sem sistema é<br><em>crescimento que não volta.</em>
   </h2>
   <p class="cta-final-sub fade-up d2">
-    Agende agora seu diagnóstico gratuito. Vagas limitadas — atendemos poucos clientes por mês para garantir resultado.
+    Sua clínica tem potencial para mais. O que falta não é esforço — é a estrutura certa para capturar esse potencial sem você ter que estar presente em tudo.
   </p>
-  <a href="#" class="btn-gold fade-up d3">
+  <p class="cta-final-sub fade-up d2" style="margin-top:-20px;font-size:15px;font-weight:500;color:rgba(255,255,255,0.6)">
+    Agende seu diagnóstico gratuito agora.<br>
+    <span style="font-weight:300;font-size:13px">Vagas limitadas — atendemos poucos clientes por mês para garantir resultado real.</span>
+  </p>
+  <a href="#" class="btn-gold open-modal fade-up d3">
     Quero Aplicar Agora <span class="arrow">→</span>
   </a>
-  <p class="cta-final-note fade-up d4">Diagnóstico gratuito · Sem compromisso · Resultado em 60 dias</p>
+  <p class="cta-final-note fade-up d4">Diagnóstico gratuito · Sem compromisso · Resultado em 90 dias</p>
 </section>
 
 <!-- ─── FOOTER ─── -->

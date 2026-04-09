@@ -62,33 +62,158 @@ body{
   opacity:0.75;
 }
 
-/* ─── NAV ─── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:16px 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(11,11,11,0.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(201,168,76,0.12);
-}
-.nav-cta{
-  font-family:'Inter',sans-serif;
-  font-size:11px;font-weight:600;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--black);
+/* ─── TOP BAR ─── */
+.top-bar{
+  width:100%;
   background:var(--gold);
-  padding:10px 22px;
-  text-decoration:none;
-  transition:all .2s;
+  padding:12px 5%;
+  text-align:center;
+  font-family:'Inter',sans-serif;
+  font-size:13px;font-weight:600;
+  color:var(--black);
+  line-height:1.4;
+  letter-spacing:0.01em;
+  position:relative;z-index:10;
 }
-.nav-cta:hover{background:var(--gold-l)}
+@media(max-width:600px){
+  .top-bar{font-size:11px;padding:10px 4%}
+}
+
+/* ─── MODAL ─── */
+.modal-overlay{
+  display:none;
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,0.88);
+  align-items:center;justify-content:center;
+  padding:20px;
+  backdrop-filter:blur(6px);
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:#0f0f0f;
+  border:1px solid var(--gold-border);
+  width:100%;max-width:480px;
+  padding:48px 40px 40px;
+  position:relative;
+  animation:modalIn .3s ease;
+}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.modal-close{
+  position:absolute;top:16px;right:20px;
+  background:none;border:none;cursor:pointer;
+  font-size:22px;color:rgba(255,255,255,0.3);
+  transition:color .2s;line-height:1;
+}
+.modal-close:hover{color:var(--gold)}
+.modal-logo{
+  display:flex;flex-direction:column;align-items:center;
+  gap:6px;margin-bottom:32px;
+}
+.modal-logo-main{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;
+  letter-spacing:0.15em;
+  color:var(--gold);
+  text-transform:uppercase;line-height:1;
+}
+.modal-logo-sub{
+  display:flex;align-items:center;gap:10px;
+}
+.modal-logo-line{width:28px;height:1px;background:var(--gold);opacity:0.5}
+.modal-logo-text{
+  font-family:'Inter',sans-serif;
+  font-size:9px;font-weight:600;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);opacity:0.7;
+}
+.modal-title{
+  font-family:'Inter',sans-serif;
+  font-size:16px;font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  text-align:center;
+  color:var(--white);
+  margin-bottom:24px;
+}
+.modal-field{margin-bottom:14px}
+.modal-input{
+  width:100%;
+  background:transparent;
+  border:1px solid var(--gold-border);
+  color:rgba(255,255,255,0.7);
+  font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:300;
+  padding:14px 18px;
+  outline:none;
+  transition:border-color .2s;
+  border-radius:4px;
+}
+.modal-input::placeholder{color:rgba(255,255,255,0.3)}
+.modal-input:focus{border-color:var(--gold)}
+.modal-phone-wrap{
+  display:flex;align-items:center;
+  border:1px solid var(--gold-border);
+  border-radius:4px;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.modal-phone-wrap:focus-within{border-color:var(--gold)}
+.modal-phone-flag{
+  padding:14px 12px;
+  background:rgba(201,168,76,0.06);
+  border-right:1px solid var(--gold-border);
+  font-size:18px;
+  cursor:default;display:flex;align-items:center;gap:6px;
+  flex-shrink:0;
+}
+.modal-phone-code{
+  font-size:13px;font-weight:500;
+  color:rgba(255,255,255,0.5);
+}
+.modal-phone-input{
+  flex:1;
+  background:transparent;
+  border:none;
+  color:rgba(255,255,255,0.7);
+  font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:300;
+  padding:14px 16px;
+  outline:none;
+}
+.modal-phone-input::placeholder{color:rgba(255,255,255,0.3)}
+.modal-submit{
+  width:100%;
+  background:var(--gold);
+  color:var(--black);
+  font-family:'Inter',sans-serif;
+  font-size:13px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:16px;
+  border:none;cursor:pointer;
+  margin-top:8px;
+  transition:all .2s;
+  border-radius:4px;
+}
+.modal-submit:hover{background:var(--gold-l);transform:translateY(-1px)}
+.modal-note{
+  text-align:center;
+  font-size:11px;color:rgba(255,255,255,0.2);
+  margin-top:14px;line-height:1.5;
+}
+@media(max-width:480px){
+  .modal-box{padding:36px 24px 32px}
+  .modal-logo-main{font-size:24px}
+}
 
 /* ─── HERO ─── */
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:120px 5% 80px;
+  padding:80px 5% 80px;
   text-align:center;
   position:relative;
   background:
@@ -655,10 +780,7 @@ footer{
 @media(max-width:768px){
   section{padding:72px 5%}
 
-  nav{padding:14px 5%}
-  .nav-cta{font-size:10px;padding:9px 16px}
-
-  .hero{padding:100px 5% 60px}
+  .hero{padding:60px 5% 60px}
 
   .pain-grid{grid-template-columns:1fr}
   .pain-item{padding:22px 24px}
@@ -710,30 +832,51 @@ footer{
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <a href="#" class="logo-mark">
-    <span class="logo-main">Revora</span>
-    <div class="logo-sub">
-      <span class="logo-sub-line"></span>
-      <span class="logo-sub-text">System</span>
-      <span class="logo-sub-line"></span>
+<!-- ─── TOP BAR ─── -->
+<div class="top-bar">
+  Exclusivo para donas(os) de clínicas de estética que faturam entre 50 e 200 mil por mês e desejam escalar o faturamento
+</div>
+
+<!-- ─── MODAL ─── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <div class="modal-logo">
+      <span class="modal-logo-main">Revora</span>
+      <div class="modal-logo-sub">
+        <span class="modal-logo-line"></span>
+        <span class="modal-logo-text">System</span>
+        <span class="modal-logo-line"></span>
+      </div>
     </div>
-  </a>
-  <a href="#aplicar" class="nav-cta">Quero Aplicar →</a>
-</nav>
+    <div class="modal-title">Informe seus dados:</div>
+    <form id="leadForm" onsubmit="handleSubmit(event)">
+      <div class="modal-field">
+        <input class="modal-input" type="text" name="nome" placeholder="* Seu nome..." required>
+      </div>
+      <div class="modal-field">
+        <input class="modal-input" type="email" name="email" placeholder="* Seu melhor e-mail..." required>
+      </div>
+      <div class="modal-field">
+        <div class="modal-phone-wrap">
+          <div class="modal-phone-flag">🇧🇷 <span class="modal-phone-code">+55</span></div>
+          <input class="modal-phone-input" type="tel" name="telefone" placeholder="* Seu WhatsApp..." required>
+        </div>
+      </div>
+      <button type="submit" class="modal-submit">Quero Aplicar Agora →</button>
+    </form>
+    <p class="modal-note">Seus dados estão seguros. Sem spam.</p>
+  </div>
+</div>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-badge fade-up">Sistema Exclusivo de Vendas com IA</div>
-
-  <h1 class="hero-headline fade-up d1">
-    Seu negócio trabalha.<br>
-    <em>Mas o dinheiro está<br>escapando por falhas que você ainda não viu.</em>
+  <h1 class="hero-headline fade-up">
+    Dobre o faturamento da sua clínica de estética em <em>90 dias</em> através de um sistema de crescimento único que já escalou <em>+50 clínicas</em> parceiras
   </h1>
 
-  <p class="hero-sub fade-up d2">
-    Assista ao vídeo e descubra como empresas estão automatizando seu processo de vendas, eliminando desperdício e escalando resultado — sem contratar mais.
+  <p class="hero-sub fade-up d1">
+    Assista o vídeo abaixo para conhecer
   </p>
 
   <!-- VSL PLAYER -->
@@ -754,7 +897,7 @@ footer{
   </div>
 
   <div class="hero-cta fade-up d3" id="aplicar">
-    <a href="#cta-final" class="btn-gold">
+    <a href="#" class="btn-gold open-modal">
       Quero Aplicar Agora <span class="arrow">→</span>
     </a>
     <p class="hero-cta-note">Diagnóstico gratuito · Vagas limitadas</p>
@@ -897,7 +1040,7 @@ footer{
   <h2 class="cta-banner-title fade-up">Pronto para parar de <em>deixar dinheiro na mesa?</em></h2>
   <p class="cta-banner-sub fade-up d1">Agende um diagnóstico gratuito e veja exatamente onde seu negócio está perdendo receita.</p>
   <div class="cta-banner-btn fade-up d2">
-    <a href="#cta-final" class="btn-gold">Quero Meu Diagnóstico Gratuito <span class="arrow">→</span></a>
+    <a href="#" class="btn-gold open-modal">Quero Meu Diagnóstico Gratuito <span class="arrow">→</span></a>
   </div>
 </div>
 
@@ -1016,6 +1159,46 @@ footer{
 </footer>
 
 <script>
+// ─── Modal ───
+const overlay=document.getElementById('modalOverlay');
+const closeBtn=document.getElementById('modalClose');
+
+function openModal(e){
+  if(e){e.preventDefault();}
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.querySelectorAll('.open-modal').forEach(el=>{
+  el.addEventListener('click',openModal);
+});
+closeBtn.addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{
+  if(e.target===overlay)closeModal();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeModal();
+});
+
+function handleSubmit(e){
+  e.preventDefault();
+  const form=e.target;
+  const data={
+    nome:form.nome.value,
+    email:form.email.value,
+    telefone:form.telefone.value,
+  };
+  // Integre aqui com sua plataforma (ActiveCampaign, Mailchimp, webhook, etc.)
+  console.log('Lead capturado:', data);
+  // Redirecionar após envio (troque pela URL desejada):
+  // window.location.href = 'https://sualink.com/obrigado';
+  form.innerHTML='<p style="text-align:center;color:var(--gold);font-size:18px;padding:20px 0">✓ Recebemos seus dados!<br><span style="font-size:14px;color:rgba(255,255,255,0.5);font-weight:300">Em breve entraremos em contato.</span></p>';
+}
+
 // ─── FAQ Accordion ───
 document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -1035,7 +1218,6 @@ if(vslThumb){
     // iframe.src='SEU_LINK_DE_VIDEO_AQUI?autoplay=1';
     // iframe.style.display='block';
     // vslThumb.style.display='none';
-    console.log('VSL: cole o link do vídeo no código para ativar o player.');
   });
 }
 

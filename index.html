@@ -1241,7 +1241,7 @@ async function handleSubmit(e){
   try{
     await fetch('https://webhook.pluglead.com/webhook/2d8c6434-1255-480f-95d1-47296655827d',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'text/plain'},
       body:JSON.stringify(data),
       mode:'no-cors',
     });
@@ -1249,7 +1249,7 @@ async function handleSubmit(e){
     console.warn('Webhook error (non-blocking):', err);
   }
 
-  window.location.href='/obrigado.html';
+  window.location.href='/obrigado';
 }
 
 // ─── FAQ Accordion ───

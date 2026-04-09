@@ -2,5 +2,6 @@
   "name": "revora-landing",
   "version": 2,
   "public": true,
+  "cleanUrls": true,
   "env": {}
 }

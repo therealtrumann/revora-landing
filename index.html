@@ -22,6 +22,12 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1478245654017971&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<!-- VTurb Player -->
+<script type="text/javascript">
+var s=document.createElement("script");
+s.src="https://scripts.converteai.net/be67a68d-ae01-4857-8fc1-00001f33298b/players/69dd4981269dba6c51f54847/v4/player.js";
+s.async=!0;document.head.appendChild(s);
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -276,72 +282,6 @@ body{
   width:100%;
   max-width:780px;
   margin:0 auto 40px;
-  position:relative;
-}
-.vsl-container{
-  position:relative;
-  width:100%;
-  padding-bottom:56.25%;
-  background:#0f0f0f;
-  border:1px solid var(--gold-border);
-  cursor:pointer;
-  overflow:hidden;
-}
-.vsl-thumb{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#0f0f0f 0%,#1a1a1a 100%);
-  transition:all .3s;
-}
-.vsl-thumb:hover .vsl-play{transform:scale(1.08)}
-.vsl-pulse{
-  position:absolute;
-  width:100px;height:100px;
-  border:1px solid rgba(201,168,76,0.3);
-  border-radius:50%;
-  animation:pulse 2s ease infinite;
-}
-.vsl-pulse:nth-child(2){animation-delay:0.5s;width:130px;height:130px;opacity:0.5}
-.vsl-play{
-  width:72px;height:72px;
-  background:var(--gold);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;z-index:1;
-  transition:transform .25s;
-  flex-shrink:0;
-}
-.vsl-play svg{
-  width:24px;height:24px;
-  fill:var(--black);
-  margin-left:4px;
-}
-.vsl-label{
-  position:absolute;bottom:0;left:0;right:0;
-  font-size:12px;font-weight:500;
-  letter-spacing:0.08em;
-  color:rgba(255,255,255,0.35);
-  padding:12px;
-  text-align:center;
-  background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);
-}
-.vsl-top-badge{
-  position:absolute;top:16px;left:50%;transform:translateX(-50%);
-  font-size:9px;font-weight:700;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold);
-  background:rgba(11,11,11,0.85);
-  border:1px solid var(--gold-border);
-  padding:5px 14px;
-  white-space:nowrap;
-  z-index:2;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1);opacity:0.5}
-  50%{transform:scale(1.15);opacity:0.2}
-  100%{transform:scale(1);opacity:0.5}
 }
 
 /* ─── CTA BUTTON ─── */
@@ -948,19 +888,7 @@ footer{
 
   <!-- VSL PLAYER -->
   <div class="vsl-wrap fade-up d2">
-    <div class="vsl-container" id="vslPlayer">
-      <div class="vsl-thumb" id="vslThumb">
-        <div class="vsl-pulse"></div>
-        <div class="vsl-pulse"></div>
-        <div class="vsl-top-badge">▶ Assista agora — 18 minutos</div>
-        <div class="vsl-play">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="vsl-label">Clique para assistir a apresentação completa</div>
-      </div>
-      <!-- Cole aqui seu iframe de vídeo quando tiver o link -->
-      <!-- <iframe id="vslIframe" src="" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;display:none"></iframe> -->
-    </div>
+    <vturb-smartplayer id="vid-69dd4981269dba6c51f54847" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
   </div>
 
   <div class="hero-cta fade-up d3" id="aplicar">
@@ -1257,17 +1185,6 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 
-// ─── VSL Player ───
-const vslThumb=document.getElementById('vslThumb');
-if(vslThumb){
-  vslThumb.addEventListener('click',()=>{
-    // Quando tiver o link do vídeo, descomente e cole a URL abaixo:
-    // const iframe=document.getElementById('vslIframe');
-    // iframe.src='SEU_LINK_DE_VIDEO_AQUI?autoplay=1';
-    // iframe.style.display='block';
-    // vslThumb.style.display='none';
-  });
-}
 
 // ─── Fade Up on Scroll ───
 const observer=new IntersectionObserver(entries=>{

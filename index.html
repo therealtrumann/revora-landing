@@ -1292,9 +1292,11 @@ async function handleSubmit(e){
   }
 
   try{
-    const queue=JSON.parse(localStorage.getItem('rv_crm_in')||'[]');
-    queue.push({...data,ts:Date.now()});
-    localStorage.setItem('rv_crm_in',JSON.stringify(queue));
+    fetch('/api/capture',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data),
+    });
   }catch(_){}
 
   window.location.href='/etapa2';

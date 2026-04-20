@@ -1,4 +1,9 @@
-const { kv } = require('@vercel/kv');
+const { Redis } = require('@upstash/redis');
+
+const redis = new Redis({
+  url:   process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 const LEADS_KEY = 'rv_leads';
 
@@ -18,7 +23,7 @@ module.exports = async function handler(req, res) {
     const { name, email, phone } = req.body || {};
     if (!name && !phone) return res.status(400).json({ error: 'name or phone required' });
 
-    const leads = (await kv.get(LEADS_KEY)) || [];
+    const leads = (await redis.get(LEADS_KEY)) || [];
 
     const ph = (phone || '').trim();
     if (ph && leads.some(l => l.phone === ph)) {
@@ -27,7 +32,7 @@ module.exports = async function handler(req, res) {
 
     const lead = {
       id: uid(),
-      name: (name || '').trim(),
+      name:  (name  || '').trim(),
       email: (email || '').trim(),
       phone: ph,
       notes: '',
@@ -37,7 +42,7 @@ module.exports = async function handler(req, res) {
     };
 
     leads.unshift(lead);
-    await kv.set(LEADS_KEY, leads);
+    await redis.set(LEADS_KEY, leads);
 
     return res.status(201).json({ ok: true });
   } catch (err) {

@@ -22,12 +22,6 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1478245654017971&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<!-- VTurb Player -->
-<script type="text/javascript">
-var s=document.createElement("script");
-s.src="https://scripts.converteai.net/be67a68d-ae01-4857-8fc1-00001f33298b/players/69dd4981269dba6c51f54847/v4/player.js";
-s.async=!0;document.head.appendChild(s);
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -89,17 +83,17 @@ body{
 .top-bar{
   width:100%;
   background:var(--gold);
-  padding:12px 5%;
+  padding:14px 5%;
   text-align:center;
   font-family:'Inter',sans-serif;
-  font-size:13px;font-weight:600;
+  font-size:16px;font-weight:700;
   color:var(--black);
   line-height:1.4;
   letter-spacing:0.01em;
   position:relative;z-index:10;
 }
 @media(max-width:600px){
-  .top-bar{font-size:11px;padding:10px 4%}
+  .top-bar{font-size:13px;padding:12px 4%}
 }
 
 /* ─── MODAL ─── */
@@ -233,15 +227,16 @@ body{
 
 /* ─── HERO ─── */
 .hero{
-  min-height:100vh;
+  min-height:100svh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:80px 5% 80px;
+  padding:clamp(12px,2vh,28px) 5% clamp(16px,2.5vh,32px);
   text-align:center;
   position:relative;
   background:
     radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,168,76,0.07) 0%,transparent 60%),
     var(--black);
+  gap:0;
 }
 .hero-badge{
   display:inline-flex;align-items:center;gap:10px;
@@ -249,39 +244,126 @@ body{
   letter-spacing:0.25em;text-transform:uppercase;
   color:var(--gold);
   border:1px solid var(--gold-border);
-  padding:8px 20px;
-  margin-bottom:32px;
+  padding:6px 16px;
+  margin-bottom:clamp(8px,1.2vh,18px);
 }
 .hero-badge::before,.hero-badge::after{
   content:'';width:16px;height:1px;background:var(--gold);opacity:0.5;
 }
 .hero-headline{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(34px,5.5vw,72px);
-  font-weight:700;
-  line-height:1.08;
-  letter-spacing:-0.01em;
-  max-width:860px;
-  margin:0 auto 20px;
+  font-family:'Inter',sans-serif;
+  font-size:clamp(22px,3vw,50px);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-0.02em;
+  max-width:820px;
+  margin:0 auto clamp(6px,0.8vh,14px);
 }
 .hero-headline em{
-  font-style:italic;
+  font-style:normal;
   color:var(--gold);
 }
 .hero-sub{
-  font-size:clamp(15px,1.8vw,18px);
+  font-size:clamp(18px,2vw,26px);
+  font-weight:700;
+  color:var(--gold);
+  max-width:600px;
+  margin:0 auto clamp(6px,0.8vh,12px);
+  line-height:1.3;
+  letter-spacing:0.01em;
+}
+.hero-desc{
+  font-size:clamp(13px,1.4vw,15px);
   font-weight:300;
-  color:rgba(255,255,255,0.55);
+  color:rgba(255,255,255,0.5);
   max-width:560px;
-  margin:0 auto 40px;
-  line-height:1.75;
+  margin:0 auto clamp(10px,1.5vh,20px);
+  line-height:1.65;
 }
 
-/* ─── VSL PLAYER ─── */
-.vsl-wrap{
+/* ─── CARROSSEL DE DEPOIMENTOS ─── */
+.testi-carousel-wrap{
   width:100%;
-  max-width:780px;
-  margin:0 auto 40px;
+  max-width:820px;
+  margin:0 auto clamp(10px,1.5vh,20px);
+  position:relative;
+  overflow:hidden;
+}
+.testi-carousel-track{
+  display:flex;
+  gap:16px;
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.testi-mini{
+  flex:0 0 clamp(220px,32vw,300px);
+  background:#0f0f0f;
+  border:1px solid rgba(201,168,76,0.14);
+  padding:16px 18px;
+  text-align:left;
+  position:relative;
+  border-radius:3px;
+  transition:border-color .25s;
+}
+.testi-mini:hover{border-color:rgba(201,168,76,0.3)}
+.testi-mini-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:10px;
+}
+.testi-avatar-mini{
+  width:38px;height:38px;border-radius:50%;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;
+  color:var(--black);
+  overflow:hidden;
+}
+.testi-info-mini{text-align:left}
+.testi-name-mini{
+  font-size:12px;font-weight:600;
+  color:rgba(255,255,255,0.85);
+  line-height:1.2;
+}
+.testi-role-mini{
+  font-size:10px;color:rgba(255,255,255,0.3);
+  margin-top:2px;letter-spacing:0.03em;
+}
+.testi-stars-mini{
+  color:var(--gold);font-size:11px;
+  letter-spacing:2px;margin-bottom:8px;
+}
+.testi-text-mini{
+  font-size:12px;font-weight:300;
+  color:rgba(255,255,255,0.55);
+  line-height:1.6;
+  font-style:italic;
+}
+.testi-result-mini{
+  display:inline-block;
+  margin-top:10px;
+  font-size:10px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);
+  background:rgba(201,168,76,0.06);
+  border:1px solid rgba(201,168,76,0.18);
+  padding:3px 10px;
+}
+/* Dots */
+.carousel-dots{
+  display:flex;align-items:center;justify-content:center;
+  gap:6px;
+  margin-top:10px;
+}
+.carousel-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(201,168,76,0.2);
+  cursor:pointer;transition:all .25s;
+  border:none;padding:0;
+}
+.carousel-dot.active{
+  background:var(--gold);
+  width:18px;border-radius:3px;
 }
 
 /* ─── CTA BUTTON ─── */
@@ -642,6 +724,17 @@ section{padding:96px 5%;position:relative;z-index:1}
 }
 .process-cta{display:flex;justify-content:center}
 
+/* ─── PROCESS 4 COLS ─── */
+.process-grid-4{grid-template-columns:repeat(4,1fr)}
+.process-grid-4::before{left:12%;right:12%}
+@media(max-width:900px){
+  .process-grid-4{grid-template-columns:repeat(2,1fr);gap:40px}
+  .process-grid-4::before{display:none}
+}
+@media(max-width:600px){
+  .process-grid-4{grid-template-columns:1fr}
+}
+
 /* ─── FAQ ─── */
 .faq-wrap{
   max-width:700px;
@@ -754,7 +847,7 @@ footer{
 
 @media(max-width:768px){
   section{padding:64px 6%}
-  .hero{padding:52px 6% 56px}
+  .hero{padding:clamp(8px,1.5vh,20px) 5% clamp(10px,2vh,24px)}
   .cta-banner{padding:64px 6%}
 
   /* pain grid — 1 col */
@@ -782,11 +875,13 @@ footer{
 
 @media(max-width:600px){
   section{padding:56px 5%}
-  .hero{padding:44px 5% 48px}
+  .hero{padding:clamp(6px,1vh,16px) 5% clamp(8px,1.5vh,20px)}
 
   /* hero headline */
-  .hero-headline{font-size:clamp(28px,8vw,44px);line-height:1.12}
-  .hero-sub{font-size:15px;max-width:100%}
+  .hero-headline{font-size:clamp(19px,5.5vw,28px);line-height:1.12}
+  .hero-sub{font-size:clamp(15px,4.5vw,20px);max-width:100%}
+  .hero-desc{font-size:12px}
+  .testi-mini{flex-basis:clamp(200px,80vw,260px)}
 
   /* section titles */
   .section-title{font-size:clamp(24px,7vw,36px)}
@@ -844,7 +939,7 @@ footer{
 
 <!-- ─── TOP BAR ─── -->
 <div class="top-bar">
-  Exclusivo para donas(os) de clínicas de estética que faturam entre 50 e 200 mil por mês e desejam escalar o faturamento
+  Exclusivo para Donas(os) de Clínicas de Estética
 </div>
 
 <!-- ─── MODAL ─── -->
@@ -865,6 +960,9 @@ footer{
         <input class="modal-input" type="text" name="nome" placeholder="* Seu nome..." required>
       </div>
       <div class="modal-field">
+        <input class="modal-input" type="email" name="email" placeholder="* Seu e-mail..." required>
+      </div>
+      <div class="modal-field">
         <div class="modal-phone-wrap">
           <div class="modal-phone-flag">🇧🇷 <span class="modal-phone-code">+55</span></div>
           <input class="modal-phone-input" type="tel" name="telefone" placeholder="* Seu WhatsApp..." required>
@@ -878,117 +976,143 @@ footer{
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <h1 class="hero-headline fade-up">
-    <em>Dobre o faturamento</em> da sua clínica de estética em <em>90 dias</em> através de um sistema de crescimento único que já escalou <em>+50 clínicas</em> parceiras
-  </h1>
 
-  <p class="hero-sub fade-up d1">
-    Assista o vídeo abaixo para conhecer
+  <h1 class="hero-headline fade-up" id="heroHeadline"></h1>
+
+  <p class="hero-desc fade-up d1">
+    Chega de perder dinheiro com agências genéricas, tráfego sem estratégia e conteúdo sem direção... Com a metodologia <strong style="color:rgba(255,255,255,0.8);font-weight:500">IA-In-One da Revora System</strong> você vai dobrar a receita da sua clínica de estética em até 90 dias sem precisar contratar mais ninguém.
   </p>
 
-  <!-- VSL PLAYER -->
-  <div class="vsl-wrap fade-up d2">
-    <vturb-smartplayer id="vid-69dd4981269dba6c51f54847" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
+  <!-- CARROSSEL DE DEPOIMENTOS -->
+  <div class="testi-carousel-wrap fade-up d2">
+    <div class="testi-carousel-track" id="carouselTrack">
+
+      <!-- 1 · Ana Carolina — foto -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:transparent;border:none;padding:0">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Carolina Melo" width="38" height="38"
+              style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.35);"
+              onerror="this.outerHTML='<div style=\'width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#c9a84c,#8a6e2f);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#0B0B0B;\'>A</div>'">
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Ana Carolina Melo</div>
+            <div class="testi-role-mini">Espaço Dolce Vita · Belo Horizonte</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"Em 60 dias nossa agenda estava lotada e paramos de depender de indicação."</p>
+        <span class="testi-result-mini">+R$38k no faturamento</span>
+      </div>
+
+      <!-- 2 · Renata — logo SVG -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:#0d0a04;border:1px solid rgba(201,168,76,0.3)">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="19" fill="#120818"/>
+              <rect x="12" y="10" width="7" height="18" rx="1" fill="none" stroke="#C9A84C" stroke-width="1.2"/>
+              <path d="M12 19 H22 Q26 19 26 15 Q26 10 22 10 H19" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+              <path d="M19 19 L26 28" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Renata Souza</div>
+            <div class="testi-role-mini">Studio R Estética · São Paulo</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"A IA respondeu mais de 300 leads no primeiro mês. Minha equipe só fechou."</p>
+        <span class="testi-result-mini">Taxa de conversão 2,8×</span>
+      </div>
+
+      <!-- 3 · Fernanda Dias — foto -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:transparent;border:none;padding:0">
+            <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Fernanda Dias" width="38" height="38"
+              style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.35);"
+              onerror="this.outerHTML='<div style=\'width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#43b89c,#1a6b57);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#0B0B0B;\'>F</div>'">
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Fernanda Dias</div>
+            <div class="testi-role-mini">Clínica Bem Estar · Curitiba</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"Saímos de R$65k para R$112k em 3 meses. Nunca imaginei crescer tão rápido."</p>
+        <span class="testi-result-mini">+R$47k em 90 dias</span>
+      </div>
+
+      <!-- 4 · Juliana — logo SVG -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:#0d0a04;border:1px solid rgba(201,168,76,0.3)">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="19" fill="#0f0c02"/>
+              <polygon points="19,8 22,16 30,16 24,21 26,29 19,24 12,29 14,21 8,16 16,16" fill="none" stroke="#C9A84C" stroke-width="1" stroke-linejoin="round"/>
+              <circle cx="19" cy="19" r="2.5" fill="#C9A84C" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Juliana Prates</div>
+            <div class="testi-role-mini">Lumière Clínica Estética · Rio de Janeiro</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"Finalmente sei de onde vem cada real. Gestão completa e faturamento previsível."</p>
+        <span class="testi-result-mini">Receita previsível todo mês</span>
+      </div>
+
+      <!-- 5 · Patrícia — foto -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:transparent;border:none;padding:0">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Patrícia Nunes" width="38" height="38"
+              style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.35);"
+              onerror="this.outerHTML='<div style=\'width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#56ab2f,#2a6b0f);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#0B0B0B;\'>P</div>'">
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Patrícia Nunes</div>
+            <div class="testi-role-mini">Bella Forma · Florianópolis</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"Reduzi 2 funcionários e aumentei o lucro. A IA faz o trabalho de uma equipe inteira."</p>
+        <span class="testi-result-mini">−40% custo operacional</span>
+      </div>
+
+      <!-- 6 · Mariana — logo SVG -->
+      <div class="testi-mini">
+        <div class="testi-mini-header">
+          <div class="testi-avatar-mini" style="background:#0d0a04;border:1px solid rgba(201,168,76,0.3)">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="19" fill="#120505"/>
+              <path d="M10 28 L10 12 L19 22 L28 12 L28 28" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round" fill="none"/>
+              <line x1="10" y1="28" x2="28" y2="28" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="testi-info-mini">
+            <div class="testi-name-mini">Mariana Campos</div>
+            <div class="testi-role-mini">Clinic Marie · Porto Alegre</div>
+          </div>
+        </div>
+        <div class="testi-stars-mini">★★★★★</div>
+        <p class="testi-text-mini">"Implantação em 10 dias. Na segunda semana já tínhamos resultado mensurável."</p>
+        <span class="testi-result-mini">Resultado em 2 semanas</span>
+      </div>
+
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
   </div>
 
   <div class="hero-cta fade-up d3" id="aplicar">
     <a href="#" class="btn-gold open-modal">
       Quero Aplicar Agora <span class="arrow">→</span>
     </a>
-    <p class="hero-cta-note">Diagnóstico gratuito · Vagas limitadas</p>
-  </div>
-</section>
-
-<!-- ─── SEÇÃO DORES ─── -->
-<section class="s-dark">
-  <div class="section-eyebrow fade-up">Você se identifica?</div>
-  <h2 class="section-title fade-up d1">Se algum desses cenários soa familiar,<br><em>você está no lugar certo.</em></h2>
-  <p class="section-sub fade-up d2">Esses não são problemas de dedicação. São lacunas no modelo de operação da sua clínica.</p>
-
-  <div class="pain-grid">
-    <div class="pain-item fade-up">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Você investe em tráfego,</strong> o lead chega — e esfria porque a recepção estava ocupada ou demorou para responder.</p>
-    </div>
-    <div class="pain-item fade-up d1">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Sua equipe passa o dia respondendo</strong> mensagens repetitivas, agendando e confirmando — em vez de vender e atender.</p>
-    </div>
-    <div class="pain-item fade-up">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Centenas de pacientes inativos</strong> na sua base que nunca mais receberam uma oferta personalizada ou reativação.</p>
-    </div>
-    <div class="pain-item fade-up d1">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Para crescer, você precisa contratar mais.</strong> Sem processos estruturados, cada novo funcionário aumenta o caos.</p>
-    </div>
-    <div class="pain-item fade-up">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>Você não sabe</strong> qual procedimento tem maior margem, qual campanha gerou retorno real ou onde o faturamento está escapando.</p>
-    </div>
-    <div class="pain-item fade-up d1">
-      <div class="pain-dot"></div>
-      <p class="pain-text"><strong>A clínica depende de você.</strong> Se você sai da operação por uma semana, tudo desacelera.</p>
-    </div>
+    <p class="hero-cta-note">Número limitado de clientes por região</p>
   </div>
 
-  <div class="pain-cta">
-    <a href="#" class="btn-gold open-modal fade-up">
-      Quero Resolver Isso <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
-
-<!-- ─── BIG IDEA ─── -->
-<section class="s-black">
-  <div class="section-eyebrow fade-up">A solução</div>
-  <h2 class="section-title fade-up d1">Apresentando o <em>ecossistema Revora</em></h2>
-  <div class="bigidea-divider"></div>
-  <div class="bigidea-wrap">
-    <p class="fade-up">O problema não é falta de pacientes, nem falta de esforço. <strong>É falta de um sistema que opere a clínica por você.</strong> Enquanto a gestão depende da sua presença diária para funcionar — você está limitando o crescimento com as próprias mãos.</p>
-    <p class="fade-up d1">A Revora é o ecossistema de gestão e crescimento para clínicas estéticas que faturam acima de R$40k/mês. Combinamos <em>tecnologia com IA, consultoria comercial</em> e acompanhamento semanal de resultados — para que você cuide dos pacientes enquanto o sistema cuida do negócio.</p>
-    <p class="fade-up d2">Não é um software. Não é uma consultoria. É um <strong>sistema operacional completo</strong> implantado sob medida na sua clínica, com resultado mensurável em 90 dias.</p>
-  </div>
-</section>
-
-<!-- ─── PILARES ─── -->
-<section class="s-dark">
-  <div class="section-eyebrow fade-up">O que você recebe</div>
-  <h2 class="section-title fade-up d1">4 pilares que transformam<br><em>a operação da sua clínica</em></h2>
-  <p class="section-sub fade-up d2">Não são promessas. São entregas estruturadas com métricas claras.</p>
-
-  <div class="benefits-grid">
-    <div class="benefit-card fade-up">
-      <span class="benefit-icon">💰</span>
-      <div class="benefit-title">Vendas</div>
-      <p class="benefit-desc">Reestruturamos sua oferta, precificação e scripts de fechamento para aumentar o ticket médio e a taxa de conversão em consultas.</p>
-      <span class="benefit-tag">→ Mais receita por paciente</span>
-    </div>
-    <div class="benefit-card fade-up d1">
-      <span class="benefit-icon">📣</span>
-      <div class="benefit-title">Marketing</div>
-      <p class="benefit-desc">Funis de captação e reativação de pacientes com IA — do primeiro contato ao agendamento, sem depender da sua equipe para cada etapa.</p>
-      <span class="benefit-tag">→ Agenda sempre preenchida</span>
-    </div>
-    <div class="benefit-card fade-up d2">
-      <span class="benefit-icon">⚙️</span>
-      <div class="benefit-title">Gestão</div>
-      <p class="benefit-desc">Plataforma all-in-one configurada para a sua clínica: CRM, prontuários, financeiro, agendamento e relatórios em um só lugar.</p>
-      <span class="benefit-tag">→ Operação sem caos</span>
-    </div>
-    <div class="benefit-card fade-up d3">
-      <span class="benefit-icon">📈</span>
-      <div class="benefit-title">Crescimento</div>
-      <p class="benefit-desc">Análise semanal de métricas com a Revora. Identificamos o que está funcionando, eliminamos o que não funciona e escalamos o que traz resultado.</p>
-      <span class="benefit-tag">→ Parceria ativa, todo semana</span>
-    </div>
-  </div>
-
-  <div class="benefits-cta">
-    <a href="#" class="btn-gold open-modal fade-up">
-      Quero Esses Resultados <span class="arrow">→</span>
-    </a>
-  </div>
 </section>
 
 <!-- ─── PROVA SOCIAL ─── -->
@@ -999,7 +1123,7 @@ footer{
 
   <div class="proof-numbers fade-up">
     <div class="pn-item">
-      <div class="pn-val">+30%</div>
+      <div class="pn-val">2×</div>
       <div class="pn-label">Aumento médio de faturamento em 90 dias</div>
     </div>
     <div class="pn-item">
@@ -1007,8 +1131,8 @@ footer{
       <div class="pn-label">Redução de custo operacional no 1º trimestre</div>
     </div>
     <div class="pn-item">
-      <div class="pn-val">2×</div>
-      <div class="pn-label">Volume de conversas qualificadas por mês</div>
+      <div class="pn-val">+300%</div>
+      <div class="pn-label">Conversas qualificadas por mês</div>
     </div>
     <div class="pn-item">
       <div class="pn-val">90d</div>
@@ -1021,7 +1145,15 @@ footer{
     <div class="testi-stars">★★★★★</div>
     <p class="testi-text">"Minha clínica faturava bem, mas eu estava dentro de tudo. Não conseguia tirar férias sem o movimento cair. Depois da Revora, a operação continuou mesmo quando estive fora por dez dias. Hoje tenho previsibilidade de agenda, números claros e uma equipe que sabe o que fazer — sem me precisar."</p>
     <div class="testi-author">
-      <div class="testi-avatar">F</div>
+      <img
+        src="https://randomuser.me/api/portraits/women/68.jpg"
+        alt="Dra. Fernanda Cassis"
+        width="48" height="48"
+        loading="lazy"
+        style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.35);flex-shrink:0;"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      >
+      <div class="testi-avatar" style="display:none">F</div>
       <div>
         <div class="testi-name">Dra. Fernanda Cassis</div>
         <div class="testi-role">Proprietária · Clínica de Estética Avançada · São Paulo</div>
@@ -1030,23 +1162,13 @@ footer{
   </div>
 </section>
 
-<!-- ─── CTA BANNER ─── -->
-<div class="cta-banner">
-  <h2 class="cta-banner-title fade-up">Pronta para ter uma clínica que cresce<br><em>sem depender de você?</em></h2>
-  <p class="cta-banner-sub fade-up d1">Agende um diagnóstico gratuito e veja exatamente onde sua clínica está deixando receita na mesa.</p>
-  <div class="cta-banner-btn fade-up d2">
-    <a href="#" class="btn-gold open-modal">Quero Meu Diagnóstico Gratuito <span class="arrow">→</span></a>
-  </div>
-  <p class="cta-banner-note fade-up d3">Vagas limitadas · Sem compromisso · 60 minutos</p>
-</div>
-
 <!-- ─── COMO FUNCIONA ─── -->
 <section class="s-darker">
   <div class="section-eyebrow fade-up">Como funciona</div>
-  <h2 class="section-title fade-up d1">3 etapas para implantar<br><em>o ecossistema na sua clínica</em></h2>
+  <h2 class="section-title fade-up d1">4 etapas para implantar<br><em>o ecossistema na sua clínica</em></h2>
   <p class="section-sub fade-up d2">Nenhuma burocracia. Nenhuma exigência técnica da sua parte.</p>
 
-  <div class="process-grid">
+  <div class="process-grid process-grid-4">
     <div class="ps-item fade-up">
       <div class="ps-num">01</div>
       <div class="ps-title">Diagnóstico Estratégico</div>
@@ -1055,12 +1177,18 @@ footer{
     </div>
     <div class="ps-item fade-up d1">
       <div class="ps-num">02</div>
-      <div class="ps-title">Implantação do Ecossistema</div>
-      <p class="ps-desc">Configuramos a plataforma, estruturamos os processos comerciais e implementamos a IA de atendimento sob medida para o perfil da sua clínica e dos seus pacientes.</p>
-      <div class="ps-time">7 a 14 dias · A Revora cuida de tudo</div>
+      <div class="ps-title">Assessoria & Máquina de Atração</div>
+      <p class="ps-desc">Montamos todos os funis de marketing da sua clínica: anúncios, captação orgânica, scripts de qualificação e automações de follow-up — tudo calibrado para o seu público e região antes do sistema entrar no ar.</p>
+      <div class="ps-time">7 a 10 dias · A Revora monta tudo</div>
     </div>
     <div class="ps-item fade-up d2">
       <div class="ps-num">03</div>
+      <div class="ps-title">Implantação do Ecossistema</div>
+      <p class="ps-desc">Configuramos a plataforma all-in-one, integramos a IA de atendimento e estruturamos os processos comerciais sob medida para o perfil da sua clínica e dos seus pacientes.</p>
+      <div class="ps-time">7 a 14 dias · Sem impacto na operação</div>
+    </div>
+    <div class="ps-item fade-up d3">
+      <div class="ps-num">04</div>
       <div class="ps-title">Crescimento com Acompanhamento</div>
       <p class="ps-desc">Toda semana analisamos os resultados com você, otimizamos o que pode melhorar e escalamos o que está convertendo. Você nunca opera sozinha.</p>
       <div class="ps-time">A partir do dia 30 · Parceria contínua</div>
@@ -1104,25 +1232,15 @@ footer{
   </div>
 </section>
 
-<!-- ─── CTA FINAL ─── -->
-<section class="cta-final" id="cta-final">
-  <div class="cta-final-label fade-up">Última chamada</div>
-  <h2 class="cta-final-title fade-up d1">
-    Cada mês sem sistema é<br><em>crescimento que não volta.</em>
-  </h2>
-  <p class="cta-final-sub fade-up d2">
-    Sua clínica tem potencial para mais. O que falta não é esforço — é a estrutura certa para capturar esse potencial sem você ter que estar presente em tudo.
-  </p>
-  <p class="cta-final-sub fade-up d2" style="margin-top:-20px;font-size:15px;font-weight:500;color:rgba(255,255,255,0.6)">
-    Agende seu diagnóstico gratuito agora.<br>
-    <span style="font-weight:300;font-size:13px">Vagas limitadas — atendemos poucos clientes por mês para garantir resultado real.</span>
-  </p>
-  <a href="#" class="btn-gold open-modal fade-up d3">
-    Quero Aplicar Agora <span class="arrow">→</span>
-  </a>
-  <p class="cta-final-note fade-up d4">Diagnóstico gratuito · Sem compromisso · Resultado em 90 dias</p>
-</section>
-
+<!-- ─── CTA BANNER ─── -->
+<div class="cta-banner">
+  <h2 class="cta-banner-title fade-up">Pronta para ter uma clínica que cresce<br><em>sem depender de você?</em></h2>
+  <p class="cta-banner-sub fade-up d1">Agende um diagnóstico gratuito e veja exatamente onde sua clínica está deixando receita na mesa.</p>
+  <div class="cta-banner-btn fade-up d2">
+    <a href="#" class="btn-gold open-modal">Quero Meu Diagnóstico Gratuito <span class="arrow">→</span></a>
+  </div>
+  <p class="cta-banner-note fade-up d3">Vagas limitadas · Sem compromisso · 60 minutos</p>
+</div>
 
 <script>
 // ─── Modal ───
@@ -1159,6 +1277,7 @@ async function handleSubmit(e){
 
   const data={
     name:form.nome.value.trim(),
+    email:form.email.value.trim(),
     phone:form.telefone.value.trim(),
   };
 
@@ -1172,7 +1291,13 @@ async function handleSubmit(e){
     console.warn('Webhook error (non-blocking):', err);
   }
 
-  window.location.href='/obrigado';
+  try{
+    const queue=JSON.parse(localStorage.getItem('rv_crm_in')||'[]');
+    queue.push({...data,ts:Date.now()});
+    localStorage.setItem('rv_crm_in',JSON.stringify(queue));
+  }catch(_){}
+
+  window.location.href='/etapa2';
 }
 
 // ─── FAQ Accordion ───
@@ -1193,6 +1318,124 @@ const observer=new IntersectionObserver(entries=>{
   });
 },{threshold:0.12});
 document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// ─── A/B Test Headlines ───
+(function(){
+  var HEADLINES = {
+    A: '<em>Dobre o Faturamento</em> da Sua Clínica em <em>90 dias</em> através do Sistema de Crescimento <em>IA-In-One</em> da Revora que já escalou +33 clínicas parceiras',
+    B: 'Em Apenas <em>30min</em>, Você Vai Descobrir Como Usar O <em>Sistema Revora IA-In-One</em> para Atrair, Agendar e Fechar <em>3x Mais Clientes</em> para sua Clínica de Estética'
+  };
+  var LIMIT = 100; // visitas totais antes de definir vencedor
+  var key = 'rv_ab';
+  var cntKey = 'rv_ab_cnt';
+
+  // Recupera ou sorteia variante para este usuário
+  var stored = null;
+  try { stored = localStorage.getItem(key); } catch(e){}
+
+  var variant;
+  if(stored === 'A' || stored === 'B'){
+    variant = stored;
+  } else {
+    variant = Math.random() < 0.5 ? 'A' : 'B';
+    try { localStorage.setItem(key, variant); } catch(e){}
+  }
+
+  // Incrementa contador global de visitas (aproximado, por dispositivo)
+  var cnt = 0;
+  try { cnt = parseInt(localStorage.getItem(cntKey)||'0',10); } catch(e){}
+  cnt++;
+  try { localStorage.setItem(cntKey, cnt); } catch(e){}
+
+  // Aplica headline
+  var el = document.getElementById('heroHeadline');
+  if(el) el.innerHTML = HEADLINES[variant];
+
+  // Envia evento ao Meta Pixel para rastrear variante
+  if(typeof fbq !== 'undefined'){
+    fbq('trackCustom', 'ABTestView', {variant: variant});
+  }
+})();
+
+// ─── Carrossel de Depoimentos ───
+(function(){
+  var track = document.getElementById('carouselTrack');
+  var dotsWrap = document.getElementById('carouselDots');
+  if(!track) return;
+
+  var cards = track.querySelectorAll('.testi-mini');
+  var total = cards.length;
+  var current = 0;
+  var autoTimer;
+
+  // Calcula visíveis com base na largura
+  function visibleCount(){
+    var w = track.parentElement.offsetWidth;
+    if(w >= 700) return 3;
+    if(w >= 480) return 2;
+    return 1;
+  }
+
+  // Cria dots
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    var vis = visibleCount();
+    var pages = Math.ceil(total / vis);
+    for(var i=0;i<pages;i++){
+      var d = document.createElement('button');
+      d.className = 'carousel-dot' + (i===0?' active':'');
+      d.setAttribute('aria-label','Ir para slide '+(i+1));
+      (function(idx){ d.addEventListener('click',function(){ goTo(idx * vis); }); })(i);
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots(){
+    var vis = visibleCount();
+    var page = Math.floor(current / vis);
+    var dots = dotsWrap.querySelectorAll('.carousel-dot');
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===page); });
+  }
+
+  function goTo(idx){
+    var vis = visibleCount();
+    var max = total - vis;
+    current = Math.max(0, Math.min(idx, max));
+    var cardW = cards[0].offsetWidth + 16; // width + gap
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    updateDots();
+  }
+
+  function next(){
+    var vis = visibleCount();
+    if(current + vis >= total) goTo(0);
+    else goTo(current + vis);
+  }
+
+  function startAuto(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function(){ next(); }, 3800);
+  }
+
+  buildDots();
+  startAuto();
+
+  // Touch / drag support
+  var startX = 0;
+  track.addEventListener('touchstart',function(e){ startX=e.touches[0].clientX; clearInterval(autoTimer); },{passive:true});
+  track.addEventListener('touchend',function(e){
+    var dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx)>40){ dx<0 ? next() : goTo(current - visibleCount()); }
+    startAuto();
+  });
+
+  // Rebuild on resize
+  var resizeT;
+  window.addEventListener('resize',function(){
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function(){ buildDots(); goTo(0); },200);
+  });
+})();
 </script>
 </body>
 </html>

@@ -405,8 +405,11 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
 // ── API ──────────────────────────────────────────────────────
 function apiFetch(path, opts = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10000);
   const headers = { 'Content-Type': 'application/json', 'x-crm-secret': API_SECRET, ...opts.headers };
-  return fetch(path, { ...opts, headers });
+  return fetch(path, { ...opts, headers, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
 }
 
 async function apiGetLeads() {
@@ -544,9 +547,9 @@ function buildCard(lead, color) {
 
 // ── LOAD ─────────────────────────────────────────────────────
 async function loadAndRender(silent = false) {
-  if (!silent) showLoading(true);
   const btn = document.getElementById('refreshBtn');
   btn.classList.add('spinning');
+  if (!silent) showLoading(true);
   try {
     const fresh = await apiGetLeads();
     const prev = leads.length;
@@ -554,8 +557,14 @@ async function loadAndRender(silent = false) {
     renderBoard();
     if (silent && fresh.length > prev) toast(`${fresh.length - prev} novo(s) lead(s) ✓`);
   } catch(err) {
-    if (!silent) toast('Erro ao carregar leads. Verifique a conexão.');
-    console.error(err);
+    console.error('[loadAndRender]', err);
+    if (!silent) {
+      const msg = err.name === 'AbortError'
+        ? 'Tempo esgotado ao conectar. Tente atualizar (↻).'
+        : 'Erro ao carregar leads — verifique /api/health';
+      toast(msg);
+    }
+    renderBoard(); // garante que as colunas aparecem mesmo com erro
   } finally {
     showLoading(false);
     btn.classList.remove('spinning');
@@ -674,7 +683,9 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); 
 function initCRM() {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('crmScreen').style.display   = '';
-  loadAndRender();
+  leads = [];
+  renderBoard(); // colunas aparecem imediatamente
+  loadAndRender(); // depois busca os dados da API
   startPolling();
 }
 
